@@ -1,6 +1,7 @@
-package com.example.entity;
+package com.example.demo.entity;
 
 import java.sql.Date;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,10 +10,9 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.w3c.dom.Text;
 
 @Entity
-public class Mascota {
+public class Cita {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -39,11 +39,11 @@ public class Mascota {
 	private String motivo;
 	
 	@NotNull
-	private Text informe;
+	private String informe;
 	
-	public Mascota() {}
+	public Cita() {}
 	
-	public Mascota(int id, int idMascota, int idVeterinario, String raza, Date fechaNacimiento, String motivo, Text informe) {
+	public Cita(int id, int idMascota, int idVeterinario, String raza, Date fechaNacimiento, String motivo, String informe) {
 		
 		this.id=id;
 		this.idMascota=idMascota;
@@ -102,12 +102,12 @@ public class Mascota {
 		this.motivo = motivo;
 	}
 
-	public Text getInforme() {
+	public String getInforme() {
 		return informe;
 	}
 
-	public void setInforme(Text informe) {
+	public void setInforme(String informe) {
 		this.informe = informe;
 	}
-
+	
 }
