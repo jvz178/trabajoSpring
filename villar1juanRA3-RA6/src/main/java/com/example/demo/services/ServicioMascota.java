@@ -2,13 +2,14 @@ package com.example.demo.services;
 
 import java.util.List;
 
-import com.example.demo.entity.Mascota;
+
+import com.example.demo.entity.Mascotas;
 
 
 
 public interface ServicioMascota {
-	public abstract List<Mascota> listarMascota();
-	public abstract Mascota añadirMascota(Mascota mascota);
+	public abstract List<Mascotas> listarMascota();
+	public abstract Mascotas añadirMascota(Mascotas mascota);
 	public abstract int quitarMascota(int id);
-	public abstract Mascota actualizarMascota(Mascota mascota);
+	public abstract Mascotas actualizarMascota(Mascotas mascota);
 }

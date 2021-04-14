@@ -2,13 +2,14 @@ package com.example.demo.services;
 
 import java.util.List;
 
-import com.example.demo.entity.Cliente;
+
+import com.example.demo.entity.Clientes;
 
 
 
 public interface ServicioCliente {
-	public abstract List<Cliente> listarCliente();
-	public abstract Cliente añadirCliente(Cliente cliente);
+	public abstract List<Clientes> listarCliente();
+	public abstract Clientes nuevoCliente(Clientes cliente);
 	public abstract int quitarCliente(int id);
-	public abstract Cliente actualizarCliente(Cliente cliente);
+	public abstract Clientes actualizarCliente(Clientes cliente);
 }

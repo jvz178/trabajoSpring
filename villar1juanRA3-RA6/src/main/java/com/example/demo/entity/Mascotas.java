@@ -6,13 +6,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.w3c.dom.Text;
 
 @Entity
-public class Mascota {
+@Table(name="mascotas")
+public class Mascotas {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -32,7 +34,7 @@ public class Mascota {
     private String raza;
     
     @NotNull
-    private Date fecha;
+    private Date fechaNacimiento;
     
     @NotNull
     @Size(max=100)
@@ -42,15 +44,15 @@ public class Mascota {
     @Size(max=11)
     private int idCliente;
     
-    public Mascota() {}
+    public Mascotas() {}
     
-    public Mascota(int id, String nombre, String tipo, String raza, Date fecha, String foto, int idCliente) {
+    public Mascotas(int id, String nombre, String tipo, String raza, Date fechaNacimiento, String foto, int idCliente) {
     	
     	this.id=id;
     	this.nombre=nombre;
     	this.tipo=tipo;
     	this.raza=raza;
-    	this.fecha=fecha;
+    	this.fechaNacimiento=fechaNacimiento;
     	this.foto=foto;
     	this.idCliente=idCliente;
     }
@@ -88,11 +90,11 @@ public class Mascota {
     }
     
     public Date getFechaNacimiento() {
-    	return fecha;
+    	return fechaNacimiento;
     }
     
     public void setFechaNacimiento(Date fecha) {
-    	this.fecha = fecha;
+    	this.fechaNacimiento = fecha;
     }
     
     public String getFoto() {

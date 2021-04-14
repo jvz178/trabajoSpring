@@ -2,13 +2,14 @@ package com.example.demo.services;
 
 import java.util.List;
 
-import com.example.demo.entity.Veterinario;
+
+import com.example.demo.entity.Veterinarios;
 
 
 
 public interface ServicioVeterinario {
-	public abstract List<Veterinario> listarVeterinarios();
-	public abstract Veterinario añadirVeterinario(Veterinario veterinario);
+	public abstract List<Veterinarios> listarVeterinarios();
+	public abstract Veterinarios añadirVeterinario(Veterinarios veterinario);
 	public abstract int quitarVeterinario(int id);
-	public abstract Veterinario actualizarVeterinario(Veterinario veterinario);
+	public abstract Veterinarios actualizarVeterinario(Veterinarios veterinario);
 }

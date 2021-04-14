@@ -4,11 +4,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.beans.factory.annotation.Value;
+
 @Entity
-public class Cliente {
+@Table(name="veterinarios")
+public class Veterinarios {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -35,9 +39,14 @@ public class Cliente {
 	@Size(max=40)
 	private String password;
 	
-	public Cliente() {}
+	@NotNull
+	@Size(max=10)
+	@Value("${ve}")
+	private String tipo;
 	
-	public Cliente(int id, String nombre, String apellidos, String telefono, String username, String password) {
+	public Veterinarios() {}
+	
+	public Veterinarios(int id, String nombre, String apellidos, String telefono, String username, String password, String tipo) {
 		
 		this.id=id;
 		this.nombre=nombre;
@@ -45,6 +54,7 @@ public class Cliente {
 		this.telefono=telefono;
 		this.username=username;
 		this.password=password;
+		this.tipo=tipo;
 	}
 
 	public int getId() {
@@ -93,6 +103,14 @@ public class Cliente {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 }

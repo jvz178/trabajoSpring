@@ -7,12 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
 @Entity
-public class Cita {
+@Table(name="citas")
+public class Citas {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -32,7 +34,7 @@ public class Cita {
 	private String raza;
 	
 	@NotNull
-	private Date fechaNacimiento;
+	private Date fecha;
 	
 	@NotNull
 	@Size(max=100)
@@ -41,17 +43,21 @@ public class Cita {
 	@NotNull
 	private String informe;
 	
-	public Cita() {}
+	@NotNull
+	private int realizada;
 	
-	public Cita(int id, int idMascota, int idVeterinario, String raza, Date fechaNacimiento, String motivo, String informe) {
+	public Citas() {}
+	
+	public Citas(int id, int idMascota, int idVeterinario, String raza, Date fecha, String motivo, String informe, int realizada) {
 		
 		this.id=id;
 		this.idMascota=idMascota;
 		this.idVeterinario=idVeterinario;
 		this.raza=raza;
-		this.fechaNacimiento=fechaNacimiento;
+		this.fecha=fecha;
 		this.motivo=motivo;
 		this.informe=informe;
+		this.realizada=realizada;
 	}
 
 	public int getId() {
@@ -86,12 +92,12 @@ public class Cita {
 		this.raza = raza;
 	}
 
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
+	public Date getFecha() {
+		return fecha;
 	}
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
 	public String getMotivo() {
@@ -108,6 +114,14 @@ public class Cita {
 
 	public void setInforme(String informe) {
 		this.informe = informe;
+	}
+
+	public int getRealizada() {
+		return realizada;
+	}
+
+	public void setRealizada(int realizada) {
+		this.realizada = realizada;
 	}
 	
 }

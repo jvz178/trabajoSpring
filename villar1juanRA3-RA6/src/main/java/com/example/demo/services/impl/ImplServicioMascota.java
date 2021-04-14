@@ -3,11 +3,12 @@ package com.example.demo.services.impl;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.Mascota;
+import com.example.demo.entity.Mascotas;
 import com.example.demo.repository.RepositorioMascota;
 import com.example.demo.services.ServicioMascota;
 
@@ -19,13 +20,13 @@ public class ImplServicioMascota implements ServicioMascota{
 	private RepositorioMascota repositorioMascota;
 	
 	@Override
-	public List<Mascota> listarMascota() {
+	public List<Mascotas> listarMascota() {
 		// TODO Auto-generated method stub
 		return repositorioMascota.findAll();
 	}
 
 	@Override
-	public Mascota añadirMascota(Mascota mascota) {
+	public Mascotas añadirMascota(Mascotas mascota) {
 		// TODO Auto-generated method stub
 		return repositorioMascota.save(mascota);
 	}
@@ -38,7 +39,7 @@ public class ImplServicioMascota implements ServicioMascota{
 	}
 
 	@Override
-	public Mascota actualizarMascota(Mascota mascota) {
+	public Mascotas actualizarMascota(Mascotas mascota) {
 		// TODO Auto-generated method stub
 		return repositorioMascota.save(mascota);
 	}

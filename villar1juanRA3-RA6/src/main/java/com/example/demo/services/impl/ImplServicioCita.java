@@ -4,11 +4,12 @@ import java.util.List;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.Cita;
+import com.example.demo.entity.Citas;
 import com.example.demo.repository.RepositorioCita;
 import com.example.demo.services.ServicioCita;
 
@@ -19,11 +20,11 @@ public class ImplServicioCita implements ServicioCita {
 	@Qualifier("repositorioCita")
 	private RepositorioCita repositorioCita;
 
-	public List<Cita> listarCita() {
+	public List<Citas> listarCita() {
 		return repositorioCita.findAll();
 	}
 
-	public Cita añadirCita(Cita cita) {
+	public Citas añadirCita(Citas cita) {
 		return repositorioCita.save(cita);
 	}
 
@@ -32,7 +33,7 @@ public class ImplServicioCita implements ServicioCita {
 		return 0;
 	}
 
-	public Cita actualizarCita(Cita cita) {
+	public Citas actualizarCita(Citas cita) {
 		return repositorioCita.save(cita);
 	}
 
