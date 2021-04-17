@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
@@ -31,11 +32,11 @@ public class Clientes {
 	@Size(max=10)
 	private String telefono;
 	
-	@NotNull
+	@Column(name="username", unique=true,nullable=false)
 	@Size(max=30)
 	private String username;
 	
-	@NotNull
+	@Column(name="password", nullable=false)
 	@Size(max=40)
 	private String password;
 	
@@ -43,9 +44,12 @@ public class Clientes {
 	@Size(max=10)
 	private String tipo="cl";
 	
+	@NotNull
+	private boolean activado=false;
+	
 	public Clientes() {}
 	
-	public Clientes(int id, String nombre, String apellidos, String telefono, String username, String password, String tipo) {
+	public Clientes(int id, String nombre, String apellidos, String telefono, String username, String password, String tipo, boolean activado) {
 		
 		this.id=id;
 		this.nombre=nombre;
@@ -54,6 +58,7 @@ public class Clientes {
 		this.username=username;
 		this.password=password;
 		this.tipo=tipo;
+		this.activado=activado;
 	}
 
 	public int getId() {
@@ -110,6 +115,14 @@ public class Clientes {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public boolean getActivado() {
+		return activado;
+	}
+
+	public void setActivado(boolean activado) {
+		this.activado = activado;
 	}
 	
 }

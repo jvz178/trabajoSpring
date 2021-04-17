@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 
@@ -11,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Clientes;
 import com.example.demo.services.ServicioCliente;
@@ -19,6 +22,7 @@ import com.example.demo.services.ServicioCliente;
 public class InicioController {
 
 	private static final String VISTA_REGISTRO="registrarse";
+	private static final String VISTA_INICIO="iniciarSesion";
 	
 	@Autowired
 	@Qualifier("servicioCliente")
@@ -26,6 +30,7 @@ public class InicioController {
 	
 	@GetMapping("/")
 	public String inicio() {
+		
 		return "inicio";
 	}
 	
@@ -40,18 +45,13 @@ public class InicioController {
 			@ModelAttribute("cliente") Clientes cliente, BindingResult bindingResult) {
 		
 		if(bindingResult.hasErrors()) {
-			System.out.print("ERROOOOOOOOOOOOOOOOOOOOOOR");
+			
 			return VISTA_REGISTRO;
 		}else {
 			
 			servicioCliente.nuevoCliente(cliente);
 			return "redirect:/";
 		}
-	}
-	
-	@GetMapping("/iniciarSesion")
-	public String inicioSesion() {
-		return "iniciarSesion";
 	}
 	
 }

@@ -7,6 +7,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.User.UserBuilder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Clientes;
@@ -14,7 +20,7 @@ import com.example.demo.repository.RepositorioCliente;
 import com.example.demo.services.ServicioCliente;
 
 @Service("servicioCliente")
-public class ImplServicioCliente implements ServicioCliente{
+public class ImplServicioCliente implements UserDetailsService, ServicioCliente{
 
 	@Autowired
 	@Qualifier("repositorioCliente")
@@ -37,4 +43,24 @@ public class ImplServicioCliente implements ServicioCliente{
 		return repositorioCliente.save(cliente);
 	}
 
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
+		com.example.demo.entity.Clientes cliente = repositorioCliente.findByUsername(username);
+		
+		UserBuilder builder = null;
+		
+		if(cliente != null) {
+			System.out.println("HOLA");
+			builder = User.withUsername(username);
+			builder.disabled(false);
+			builder.password(cliente.getPassword());
+			builder.authorities(new SimpleGrantedAuthority(cliente.getTipo()));
+		}
+		else {
+			
+			System.out.println("ERROR");
+			throw new UsernameNotFoundException("Usuario no encontrado");
+		}
+		return builder.build();
+	}
 }

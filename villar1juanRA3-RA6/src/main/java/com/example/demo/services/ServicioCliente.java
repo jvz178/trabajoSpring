@@ -5,8 +5,6 @@ import java.util.List;
 
 import com.example.demo.entity.Clientes;
 
-
-
 public interface ServicioCliente {
 	public abstract List<Clientes> listarCliente();
 	public abstract Clientes nuevoCliente(Clientes cliente);
