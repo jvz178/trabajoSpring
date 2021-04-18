@@ -1,0 +1,3 @@
+CREATE DATABASE gestionveterinaria;
+
+(Al arrancar el servidor se crean las tablas, solo hay que crear la base)
