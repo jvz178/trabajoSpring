@@ -48,7 +48,6 @@ public class ImplServicioCliente implements UserDetailsService, ServicioCliente{
 		UserBuilder builder = null;
 		
 		if(cliente != null) {
-			System.out.println("HOLA");
 			builder = User.withUsername(username);
 			builder.disabled(false);
 			builder.password(cliente.getPassword());
@@ -56,7 +55,6 @@ public class ImplServicioCliente implements UserDetailsService, ServicioCliente{
 		}
 		else {
 			
-			System.out.println("ERROR");
 			throw new UsernameNotFoundException("Usuario no encontrado");
 		}
 		return builder.build();

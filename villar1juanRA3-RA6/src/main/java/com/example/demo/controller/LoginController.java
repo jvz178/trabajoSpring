@@ -20,8 +20,8 @@ public class LoginController {
 		return "login";
 	}
 	
-	@GetMapping("/loginPost")
-	public String loginPost() {
-		return "redirect:/loginPost";
+	@GetMapping("/logueado")
+	public String logueado() {
+		return "logueado";
 	}
 }
