@@ -70,4 +70,10 @@ public class ImplServicioCliente implements UserDetailsService, ServicioCliente{
 		
 		return repositorioCliente.save(cliente);
 	}
+
+	@Override
+	public Clientes obtenerClientePorId(int id) throws Exception {
+		
+		return repositorioCliente.findById(id);
+	}
 }

@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,7 +32,7 @@ public class Veterinarios {
 	@Size(max=10)
 	private String telefono;
 	
-	@NotNull
+	@Column(name="username", unique=true,nullable=false)
 	@Size(max=30)
 	private String username;
 	

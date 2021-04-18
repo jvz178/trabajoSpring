@@ -10,4 +10,5 @@ public interface ServicioCliente {
 	public abstract Clientes registrar(Clientes cliente);
 	public abstract int quitarCliente(int id);
 	public abstract Clientes actualizarCliente(Clientes cliente);
+	public abstract Clientes obtenerClientePorId(int id) throws Exception;
 }

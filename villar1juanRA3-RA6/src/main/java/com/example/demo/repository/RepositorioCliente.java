@@ -17,4 +17,5 @@ import com.example.demo.entity.Clientes;
 public interface RepositorioCliente extends JpaRepository<Clientes, Serializable>{
 
 	public abstract Clientes findByUsername(String username);
+	public abstract Clientes findById(int id);
 }
