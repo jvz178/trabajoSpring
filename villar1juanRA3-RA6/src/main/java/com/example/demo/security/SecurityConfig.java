@@ -45,7 +45,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.permitAll();
 	}
 	
-	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 		

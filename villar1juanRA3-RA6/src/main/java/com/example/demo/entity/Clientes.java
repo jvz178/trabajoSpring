@@ -37,7 +37,7 @@ public class Clientes {
 	private String username;
 	
 	@Column(name="password", nullable=false)
-	@Size(max=40)
+	@Size(max=100)
 	private String password;
 	
 	@NotNull

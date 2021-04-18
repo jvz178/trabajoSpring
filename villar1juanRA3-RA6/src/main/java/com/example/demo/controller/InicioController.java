@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Clientes;
 import com.example.demo.services.ServicioCliente;
@@ -34,24 +35,18 @@ public class InicioController {
 		return "inicio";
 	}
 	
-	@GetMapping("/registrarse")
+	@GetMapping("/auth/registrarse")
 	public String registrarse(Model model) {
 		model.addAttribute("cliente", new Clientes());
 		return VISTA_REGISTRO;
 	}
 	
-	@PostMapping("/nuevoCliente")
-	public String nuevoCliente(@Valid
-			@ModelAttribute("cliente") Clientes cliente, BindingResult bindingResult) {
+	@PostMapping("/auth/nuevoCliente")
+	public String nuevoCliente(@ModelAttribute Clientes cliente, RedirectAttributes flash) {
 		
-		if(bindingResult.hasErrors()) {
-			
-			return VISTA_REGISTRO;
-		}else {
-			
-			servicioCliente.nuevoCliente(cliente);
-			return "redirect:/";
-		}
+		servicioCliente.registrar(cliente);
+		flash.addFlashAttribute("success", "Usuario registrado");
+		return "redirect:/auth/login";
 	}
 	
 }
