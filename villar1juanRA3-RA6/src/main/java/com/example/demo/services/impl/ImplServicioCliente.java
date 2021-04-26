@@ -67,6 +67,7 @@ public class ImplServicioCliente implements UserDetailsService, ServicioCliente{
 		
 		cliente.setPassword(passwordEncoder.encode(cliente.getPassword()));
 		cliente.setActivado(true);
+		cliente.setTipo("cl");
 		
 		return repositorioCliente.save(cliente);
 	}

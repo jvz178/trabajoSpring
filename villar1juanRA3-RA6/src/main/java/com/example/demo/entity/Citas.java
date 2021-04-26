@@ -2,11 +2,13 @@ package com.example.demo.entity;
 
 import java.sql.Date;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -21,13 +23,13 @@ public class Citas {
 	@Size(max=11)
 	private int id;
 	
-	@NotNull
-	@Size(max=11)
-	private int idMascota;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idMascota", referencedColumnName= "id")
+	private Mascotas idMascota;
 	
-	@NotNull
-	@Size(max=11)
-	private int idVeterinario;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idVeterinario", referencedColumnName= "id")
+	private Veterinarios idVeterinario;
 	
 	@NotNull
 	@Size(max=30)
@@ -48,7 +50,7 @@ public class Citas {
 	
 	public Citas() {}
 	
-	public Citas(int id, int idMascota, int idVeterinario, String raza, Date fecha, String motivo, String informe, int realizada) {
+	public Citas(int id, Mascotas idMascota, Veterinarios idVeterinario, String raza, Date fecha, String motivo, String informe, int realizada) {
 		
 		this.id=id;
 		this.idMascota=idMascota;
@@ -68,19 +70,19 @@ public class Citas {
 		this.id = id;
 	}
 
-	public int getIdMascota() {
+	public Mascotas getIdMascota() {
 		return idMascota;
 	}
 
-	public void setIdMascota(int idMascota) {
+	public void setIdMascota(Mascotas idMascota) {
 		this.idMascota = idMascota;
 	}
 
-	public int getIdVeterinario() {
+	public Veterinarios getIdVeterinario() {
 		return idVeterinario;
 	}
 
-	public void setIdVeterinario(int idVeterinario) {
+	public void setIdVeterinario(Veterinarios idVeterinario) {
 		this.idVeterinario = idVeterinario;
 	}
 

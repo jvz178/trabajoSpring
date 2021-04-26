@@ -2,15 +2,17 @@ package com.example.demo.entity;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.w3c.dom.Text;
 
 @Entity
 @Table(name="mascotas")
@@ -40,13 +42,13 @@ public class Mascotas {
     @Size(max=100)
     private String foto;
     
-    @NotNull
-    @Size(max=11)
-    private int idCliente;
+    @OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idCliente", referencedColumnName= "id")
+    private Clientes idCliente;
     
     public Mascotas() {}
     
-    public Mascotas(int id, String nombre, String tipo, String raza, Date fechaNacimiento, String foto, int idCliente) {
+    public Mascotas(int id, String nombre, String tipo, String raza, Date fechaNacimiento, String foto, Clientes idCliente) {
     	
     	this.id=id;
     	this.nombre=nombre;
@@ -105,11 +107,11 @@ public class Mascotas {
     	this.foto = foto;
     }
     
-    public int getIdCliente() {
+    public Clientes getIdCliente() {
     	return idCliente;
     }
     
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(Clientes idCliente) {
     	this.idCliente = idCliente;
     }
 

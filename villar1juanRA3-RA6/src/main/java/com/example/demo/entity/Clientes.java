@@ -42,7 +42,7 @@ public class Clientes {
 	
 	@NotNull
 	@Size(max=10)
-	private String tipo="cl";
+	private String tipo;
 	
 	@NotNull
 	private boolean activado=false;

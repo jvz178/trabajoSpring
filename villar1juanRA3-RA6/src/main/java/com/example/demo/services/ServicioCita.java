@@ -3,9 +3,8 @@ package com.example.demo.services;
 import java.util.List;
 
 
+
 import com.example.demo.entity.Citas;
-
-
 
 public interface ServicioCita {
 	public abstract List<Citas> listarCita();
