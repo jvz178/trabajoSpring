@@ -42,9 +42,10 @@ public class InicioController {
 	}
 	
 	@PostMapping("/auth/nuevoCliente")
-	public String nuevoCliente(@ModelAttribute Clientes cliente) {
+	public String nuevoCliente(@ModelAttribute Clientes cliente, RedirectAttributes flash) {
 		
 		servicioCliente.registrar(cliente);
+		flash.addFlashAttribute("success", "Usuario registrado");
 		return "redirect:/auth/login";
 	}
 	

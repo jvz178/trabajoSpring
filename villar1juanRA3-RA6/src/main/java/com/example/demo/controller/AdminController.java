@@ -31,10 +31,9 @@ public class AdminController {
 	}
 	
 	@GetMapping("/borrarUsuario/{id}")
-	public String borrarUsuario(Model model, @PathVariable int id, RedirectAttributes flash) {
+	public String borrarUsuario(Model model, @PathVariable int id) {
 		
 		servicioCliente.quitarCliente(id);
-		flash.addFlashAttribute("success", "Usuario borrado");
 		return "redirect:/mostrarUsuarios";
 	}
 }
