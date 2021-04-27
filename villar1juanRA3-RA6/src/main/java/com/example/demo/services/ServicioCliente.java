@@ -11,4 +11,5 @@ public interface ServicioCliente {
 	public abstract int quitarCliente(int id);
 	public abstract Clientes actualizarCliente(Clientes cliente);
 	public abstract Clientes obtenerClientePorId(int id) throws Exception;
+	public abstract void activarCliente(Clientes cliente);
 }

@@ -40,6 +40,11 @@ public class ImplServicioCliente implements UserDetailsService, ServicioCliente{
 	public Clientes actualizarCliente(Clientes cliente) {
 		return repositorioCliente.save(cliente);
 	}
+	
+	public void activarCliente(Clientes cliente) {
+		
+		cliente.setActivado(true);
+	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
@@ -51,7 +56,7 @@ public class ImplServicioCliente implements UserDetailsService, ServicioCliente{
 			builder = User.withUsername(username);
 			builder.disabled(false);
 			builder.password(cliente.getPassword());
-			builder.authorities(new SimpleGrantedAuthority(cliente.getTipo()));
+			builder.authorities(new SimpleGrantedAuthority(cliente.getRole()));
 		}
 		else {
 			
@@ -66,8 +71,8 @@ public class ImplServicioCliente implements UserDetailsService, ServicioCliente{
 	public com.example.demo.entity.Clientes registrar(com.example.demo.entity.Clientes cliente){
 		
 		cliente.setPassword(passwordEncoder.encode(cliente.getPassword()));
-		cliente.setActivado(true);
-		cliente.setTipo("cl");
+		cliente.setActivado(false);
+		cliente.setRole("ROLE_USER");
 		
 		return repositorioCliente.save(cliente);
 	}

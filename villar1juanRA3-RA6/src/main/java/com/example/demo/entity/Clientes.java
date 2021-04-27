@@ -42,14 +42,14 @@ public class Clientes {
 	
 	@NotNull
 	@Size(max=10)
-	private String tipo;
+	private String role;
 	
 	@NotNull
 	private boolean activado=false;
 	
 	public Clientes() {}
 	
-	public Clientes(int id, String nombre, String apellidos, String telefono, String username, String password, String tipo, boolean activado) {
+	public Clientes(int id, String nombre, String apellidos, String telefono, String username, String password, String role, boolean activado) {
 		
 		this.id=id;
 		this.nombre=nombre;
@@ -57,7 +57,7 @@ public class Clientes {
 		this.telefono=telefono;
 		this.username=username;
 		this.password=password;
-		this.tipo=tipo;
+		this.role=role;
 		this.activado=activado;
 	}
 
@@ -109,12 +109,12 @@ public class Clientes {
 		this.password = password;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getRole() {
+		return role;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public boolean getActivado() {

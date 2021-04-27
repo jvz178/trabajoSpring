@@ -42,12 +42,11 @@ public class Veterinarios {
 	
 	@NotNull
 	@Size(max=10)
-	@Value("${ve}")
-	private String tipo;
+	private String role;
 	
 	public Veterinarios() {}
 	
-	public Veterinarios(int id, String nombre, String apellidos, String telefono, String username, String password, String tipo) {
+	public Veterinarios(int id, String nombre, String apellidos, String telefono, String username, String password, String role) {
 		
 		this.id=id;
 		this.nombre=nombre;
@@ -55,7 +54,7 @@ public class Veterinarios {
 		this.telefono=telefono;
 		this.username=username;
 		this.password=password;
-		this.tipo=tipo;
+		this.role=role;
 	}
 
 	public int getId() {
@@ -106,12 +105,12 @@ public class Veterinarios {
 		this.password = password;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getRole() {
+		return role;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 }
