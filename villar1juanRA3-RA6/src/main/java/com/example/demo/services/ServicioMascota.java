@@ -14,4 +14,5 @@ public interface ServicioMascota {
 	public abstract Mascotas añadirMascota(Mascotas mascota);
 	public abstract int quitarMascota(int id);
 	public abstract Mascotas actualizarMascota(Mascotas mascota);
+	//Usar countBy para el limite de 3
 }

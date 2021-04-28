@@ -2,14 +2,14 @@
 <html>
 <head>
 <settings th:replace="plantillasBase/plantillaBase :: set"></settings>
-<title>Clinican - Registrarse</title>
+<title>Clinican - admin - Nuevo usuario</title>
 </head>
 <body id="page-top">
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="#page-top">Clinican</a>
+			<usuario th:replace="plantillasBase/plantillaBase :: usuario"></usuario>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -19,7 +19,7 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="/">Atras</a></li>
+						th:href="@{/mostrarUsuarios}">Atras</a></li>
 				</ul>
 			</div>
 		</div>
@@ -32,7 +32,7 @@
 					<i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
 					<h2 class="text-white mb-5">Introduce los datos para
 						registrar un usuario</h2>
-					<form th:action="@{/auth/nuevoCliente}" th:object="${cliente}"
+					<form th:action="@{/auth/usuarioRegistrado}" th:object="${cliente}"
 						method="post">
 						<formulario th:replace="plantillasBase/formularioUsuario :: formulario"></formulario>
 						<button class="btn btn-primary mx-auto" type="submit">Registrar</button>

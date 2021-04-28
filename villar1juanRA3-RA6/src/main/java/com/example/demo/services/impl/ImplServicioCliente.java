@@ -2,6 +2,8 @@ package com.example.demo.services.impl;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -41,9 +43,18 @@ public class ImplServicioCliente implements UserDetailsService, ServicioCliente{
 		return repositorioCliente.save(cliente);
 	}
 	
-	public void activarCliente(Clientes cliente) {
+	public Clientes encontrarPorId(int id) {
 		
-		cliente.setActivado(true);
+		return repositorioCliente.findById(id);
+	}
+	
+	public void activarDesactivarCliente(Clientes cliente) {
+		
+		if(cliente.getActivado()==false) {
+			cliente.setActivado(true);
+		}else {
+			cliente.setActivado(false);
+		}
 	}
 
 	@Override
@@ -72,7 +83,7 @@ public class ImplServicioCliente implements UserDetailsService, ServicioCliente{
 		
 		cliente.setPassword(passwordEncoder.encode(cliente.getPassword()));
 		cliente.setActivado(false);
-		cliente.setRole("ROLE_USER");
+		cliente.setRole("ROLE_CLI");
 		
 		return repositorioCliente.save(cliente);
 	}

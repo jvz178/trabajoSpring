@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.entity.Clientes;
 import com.example.demo.services.ServicioCliente;
 
 @Controller
 public class AdminController {
 
+	private static final String VISTA_EDITAR="editarUsuarioAdmin";
+	private int idEditar;
+	
 	@Autowired
 	@Qualifier("servicioCliente")
 	private ServicioCliente servicioCliente;
@@ -34,6 +38,46 @@ public class AdminController {
 	public String borrarUsuario(Model model, @PathVariable int id) {
 		
 		servicioCliente.quitarCliente(id);
+		return "redirect:/mostrarUsuarios";
+	}
+	
+	@GetMapping("/editarUsuarioAdmin/{id}")
+	public String editarUsuarioAdmin(@PathVariable int id, Model model) throws Exception {
+		
+		Clientes cliente= servicioCliente.obtenerClientePorId(id);
+		idEditar=id;
+		model.addAttribute("cliente", cliente);
+		return VISTA_EDITAR;
+	}
+	
+	@PostMapping("/usuarioCambiado")
+	public String usuarioCambiado(@ModelAttribute Clientes cliente) {
+		
+		cliente.setId(idEditar);
+		servicioCliente.actualizarCliente(cliente);
+		return "redirect:/mostrarUsuarios";
+	}
+	
+	@GetMapping("/auth/nuevoUsuarioAdmin")
+	public String nuevoUsuarioAdmin(Model model) {
+		
+		model.addAttribute("cliente", new Clientes());
+		return "nuevoUsuarioAdmin";
+	}
+	
+	@PostMapping("/auth/usuarioRegistrado")
+	public String usuarioRegistrado(@ModelAttribute Clientes cliente) {
+		
+		servicioCliente.registrar(cliente);
+		return "redirect:/mostrarUsuarios";
+	}
+	
+	@GetMapping("/activarDesactivarUsuario/{id}")
+	public String activarDesactivarUsuario(@PathVariable int id) throws Exception {
+		
+		Clientes cliente = servicioCliente.obtenerClientePorId(id);
+		servicioCliente.activarDesactivarCliente(cliente);
+		servicioCliente.actualizarCliente(cliente);
 		return "redirect:/mostrarUsuarios";
 	}
 }

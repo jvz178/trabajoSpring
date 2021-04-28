@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <settings th:replace="plantillasBase/plantillaBase :: set"></settings>
-<title>Clinican - admin</title>
+<title>Clinican - cliente - mascotas</title>
 </head>
 <body id="page-top">
 	<!-- Navigation-->
@@ -28,7 +28,7 @@
 	<header class="masthead">
 		<div class="container d-flex h-100 align-items-center">
 			<div class="mx-auto text-center">
-				<h1 class="mx-auto my-0 text-uppercase">Seccion admin</h1>
+				<h1 class="mx-auto my-0 text-uppercase">Seccion mascotas</h1>
 				<h2 class="text-white-50 mx-auto mt-2 mb-5">Bienvenido</h2>
 			</div>
 		</div>
@@ -53,30 +53,24 @@
 								<th>Acciones</th>
 							</tr>
 						<thead>
-						<tbody th:each="cliente: ${clientes}">
+						<tbody th:each="mascota: ${mascotas}">
 							<tr>
-								<th th:text=${cliente.id}></th>
-								<th th:text=${cliente.nombre}></th>
-								<th th:text=${cliente.apellidos}></th>
-								<th th:text=${cliente.telefono}></th>
-								<th th:text=${cliente.username}></th>
-								<th>???</th>
-								<th th:text=${cliente.role}></th>
-								<span th:if="${cliente.activado} == ${false}">
-									<th th:text=Desactivado></th>
-								</span>
-								<span th:if="${cliente.activado} == ${true}">
-									<th th:text=Activado></th>
-								</span>
-								<th><a th:href="@{/borrarUsuario/}+${cliente.id}">
+								<th th:text=${mascota.id}></th>
+								<th th:text=${mascota.nombre}></th>
+								<th th:text=${mascota.tipo}></th>
+								<th th:text=${mascota.raza}></th>
+								<th th:text=${mascota.fechaNacimiento}></th>
+								<th th:text=${mascota.foto}></th>
+								<th th:text=${mascota.idCliente}></th>
+								<th><a href="#">
 										<button type="button" class="btn btn-default">
 											<i class="fas fa-dumpster-fire"></i>
 										</button>
-								</a> <a th:href="@{/editarUsuarioAdmin/}+${cliente.id}">
+								</a> <a href="#">
 										<button type="button" class="btn btn-default">
 											<i class="fas fa-user-edit"></i>
 										</button>
-								</a> <a th:href="@{/activarDesactivarUsuario/}+${cliente.id}">
+								</a> <a href="#">
 										<button type="button" class="btn btn-default">
 										<span th:if="${cliente.activado} == ${false}">
 											<i class="fas fa-user-check"></i> </span>
@@ -89,7 +83,7 @@
 					</table>
 				</div>
 				<br>
-				<form class="form-inline" th:action="@{/auth/nuevoUsuarioAdmin}">
+				<form class="form-inline" action="#">
 					<div class="mx-auto text-center">
 						<button class="btn btn-primary js-scroll-trigger" type="submit">
 						<i class="fas fa-user-plus"></i></button>

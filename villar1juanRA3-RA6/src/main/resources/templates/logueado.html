@@ -36,8 +36,17 @@
 					<form class="form-inline" th:action="@{/mostrarUsuarios}"
 						method="get">
 						<div class="mx-auto text-center">
-							<button class="btn btn-primary js-scroll-trigger" type="submit">Funciones
-								admin</button>
+							<button class="btn btn-primary js-scroll-trigger" type="submit">
+							Funciones admin</button>
+						</div>
+					</form>
+				</li>
+				<li sec:authorize="hasRole('ROLE_CLI')" class="nav-item">
+					<form class="form-inline" th:action="@{/tablaMascotas}"
+						method="get">
+						<div class="mx-auto text-center">
+							<button class="btn btn-primary js-scroll-trigger" type="submit">
+							Mascotas</button>
 						</div>
 					</form>
 				</li>
