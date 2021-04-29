@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <settings th:replace="plantillasBase/plantillaBase :: set"></settings>
-<title>Clinican - cliente - mascotas</title>
+<title>Clinican - mascotas</title>
 </head>
 <body id="page-top">
 	<!-- Navigation-->
@@ -44,12 +44,10 @@
 							<tr>
 								<th>Id</th>
 								<th>Nombre</th>
-								<th>Apellidos</th>
-								<th>Telefono</th>
-								<th>Username</th>
-								<th>Password</th>
-								<th>Rol</th>
-								<th>Estado</th>
+								<th>Tipo</th>
+								<th>Raza</th>
+								<th>Fecha de nacimiento</th>
+								<th>Foto</th>
 								<th>Acciones</th>
 							</tr>
 						<thead>
@@ -61,21 +59,16 @@
 								<th th:text=${mascota.raza}></th>
 								<th th:text=${mascota.fechaNacimiento}></th>
 								<th th:text=${mascota.foto}></th>
-								<th th:text=${mascota.idCliente}></th>
-								<th><a href="#">
+								<th><a th:href="@{/borrarMascota/}+${mascota.id}">
 										<button type="button" class="btn btn-default">
 											<i class="fas fa-dumpster-fire"></i>
 										</button>
-								</a> <a href="#">
+								</a> <a th:href="@{/editarMascota/}+${mascota.id}">
 										<button type="button" class="btn btn-default">
-											<i class="fas fa-user-edit"></i>
+											<i class="fas fa-paw"></i>
 										</button>
 								</a> <a href="#">
 										<button type="button" class="btn btn-default">
-										<span th:if="${cliente.activado} == ${false}">
-											<i class="fas fa-user-check"></i> </span>
-										<span th:if="${cliente.activado} == ${true}">
-											<i class="fas fa-user-times"></i> </span>
 										</button>
 								</a></th>
 							</tr>
@@ -86,7 +79,7 @@
 				<form class="form-inline" action="#">
 					<div class="mx-auto text-center">
 						<button class="btn btn-primary js-scroll-trigger" type="submit">
-						<i class="fas fa-user-plus"></i></button>
+						<i class="fas fa-plus"></i></button>
 					</div>
 				</form>
 			</div>
