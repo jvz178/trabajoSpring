@@ -10,7 +10,7 @@ import com.example.demo.entity.Clientes;
 
 @Controller
 public class LoginController {
-
+	
 	@GetMapping("/auth/login")
 	public String login(Model model, @RequestParam(name="error", required=false) String error,
 			@RequestParam(name="logout", required=false) String logout) {
@@ -22,7 +22,7 @@ public class LoginController {
 	}
 	
 	@GetMapping("/logueado")
-	public String logueado() {
+	public String logueado() throws Exception {
 		return "logueado";
 	}
 	

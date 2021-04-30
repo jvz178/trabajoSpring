@@ -42,12 +42,13 @@
 					</form>
 				</li>
 				<li sec:authorize="hasRole('ROLE_CLI')" class="nav-item">
-					<form class="form-inline" th:action="@{/tablaMascotas}" method="get">
+					<a th:href="@{/tablaMascotas/}+${cliente.id}"
+					method="get">
 						<div class="mx-auto text-center">
 							<button class="btn btn-primary js-scroll-trigger" type="submit">
 							Mascotas</button>
 						</div>
-					</form>
+					</a>
 				</li>
 
 			</div>

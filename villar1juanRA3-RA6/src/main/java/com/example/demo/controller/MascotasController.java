@@ -31,12 +31,12 @@ public class MascotasController {
 	private ServicioCliente servicioCliente;
 	
 	@PreAuthorize("hasRole('ROLE_CLI')")
-	@GetMapping("/tablaMascotas")
-	public ModelAndView tablaMascotas() throws Exception {
+	@GetMapping("/tablaMascotas/{id}")
+	public String tablaMascotas(Model model, @PathVariable int id) {
 		
-		ModelAndView mav = new ModelAndView("tablaMascotas");
-		mav.addObject("mascotas", servicioMascota.listarMascota());
-		return mav;
+		int id2=id;
+		model.addAttribute("mascotas", servicioMascota.listarMascota());
+		return "tablaMascotas";
 	}
 	
 	@GetMapping("/borrarMascota/{id}")
