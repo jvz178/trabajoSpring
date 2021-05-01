@@ -42,7 +42,7 @@
 					</form>
 				</li>
 				<li sec:authorize="hasRole('ROLE_CLI')" class="nav-item">
-					<a th:href="@{/tablaMascotas/}+${cliente.id}"
+					<a th:href="@{/tablaMascotas}"
 					method="get">
 						<div class="mx-auto text-center">
 							<button class="btn btn-primary js-scroll-trigger" type="submit">

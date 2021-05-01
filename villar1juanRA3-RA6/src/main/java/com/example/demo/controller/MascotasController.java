@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +21,7 @@ import com.example.demo.services.ServicioMascota;
 @Controller
 public class MascotasController {
 
-	private int idEditar;
+	private int idEditar, idMascotaCita;
 	private Clientes idCliente;
 	
 	@Autowired
@@ -30,12 +32,19 @@ public class MascotasController {
 	@Qualifier("servicioCliente")
 	private ServicioCliente servicioCliente;
 	
-	@PreAuthorize("hasRole('ROLE_CLI')")
-	@GetMapping("/tablaMascotas/{id}")
-	public String tablaMascotas(Model model, @PathVariable int id) {
+	public Clientes getCliente() {
 		
-		int id2=id;
-		model.addAttribute("mascotas", servicioMascota.listarMascota());
+		UserDetails ud = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Clientes cliente = servicioCliente.obtenerClientePorUsername(ud.getUsername());
+		return cliente;
+	}
+	
+	@PreAuthorize("hasRole('ROLE_CLI')")
+	@GetMapping("/tablaMascotas")
+	public String tablaMascotas(Model model) throws Exception {
+		
+		Clientes cliente = getCliente();
+		model.addAttribute("mascotas", servicioMascota.obtenerMascotasPorIdCliente(cliente));
 		return "tablaMascotas";
 	}
 	
@@ -63,5 +72,28 @@ public class MascotasController {
 		mascota.setIdCliente(idCliente);
 		servicioMascota.actualizarMascota(mascota);
 		return "redirect:/tablaMascotas";
+	}
+	
+	@GetMapping("/nuevaMascota")
+	public String nuevaMascota(Model model) {
+		
+		model.addAttribute("mascota", new Mascotas());
+		return "nuevaMascota";
+	}
+	
+	@PostMapping("/mascotaRegistrada")
+	public String mascotaRegistrada(@ModelAttribute Mascotas mascota) {
+		
+		mascota.setIdCliente(getCliente());
+		servicioMascota.añadirMascota(mascota);
+		return "tablaMascotas";
+	}
+	
+	@GetMapping("/pedirCita/{id}")
+	public String pedirCita(Model model, @PathVariable int id) {
+		
+		idMascotaCita=id;
+		model.addAttribute("clientes", servicioCliente.listarCliente());
+		return "pedirCita";
 	}
 }

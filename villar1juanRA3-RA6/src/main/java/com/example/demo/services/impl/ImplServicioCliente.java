@@ -93,4 +93,10 @@ public class ImplServicioCliente implements UserDetailsService, ServicioCliente{
 		
 		return repositorioCliente.findById(id);
 	}
+
+	@Override
+	public Clientes obtenerClientePorUsername(String username) {
+		
+		return repositorioCliente.findByUsername(username);
+	}
 }

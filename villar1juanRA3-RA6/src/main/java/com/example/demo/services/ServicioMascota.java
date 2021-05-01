@@ -13,6 +13,6 @@ public interface ServicioMascota {
 	public abstract int quitarMascota(int id);
 	public abstract Mascotas actualizarMascota(Mascotas mascota);
 	public abstract Mascotas obtenerMascotaPorId(int id) throws Exception;
-	public abstract Mascotas listarMascotasCliente(Clientes idCliente);
+	public abstract Mascotas obtenerMascotasPorIdCliente(Clientes idCliente);
 	//Usar countBy para el limite de 3
 }
