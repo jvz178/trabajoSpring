@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,29 +11,29 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.demo.entity.Clientes;
-import com.example.demo.services.ServicioCliente;
+import com.example.demo.entity.Usuarios;
+import com.example.demo.services.ServicioUsuario;
 
 @Controller
 public class EditarClienteController {
 
 	@Autowired
-	@Qualifier("servicioCliente")
-	private ServicioCliente servicioCliente;
+	@Qualifier("servicioUsuario")
+	private ServicioUsuario servicioUsuario;
 	
-	@GetMapping("/auth/editarCliente/{id}")
-	public String editarCliente(Model model, @PathVariable(name="id")int id) throws Exception{
+	@GetMapping("/auth/editarUsuario/{id}")
+	public String editarUsuario(Model model, @PathVariable(name="id")int id) throws Exception{
 		
-		Clientes cliente = servicioCliente.obtenerClientePorId(id);
-		model.addAttribute("cliente", cliente);
-		return "editarCliente";
+		Usuarios usuario = servicioUsuario.obtenerUsuarioPorId(id);
+		model.addAttribute("usuario", usuario);
+		return "editarUsuario";
 	}
 	
 	@PostMapping("/auth/clienteEditado")
-	public String clienteEditado(@ModelAttribute Clientes cliente, RedirectAttributes flash) {
+	public String clienteEditado(@ModelAttribute Usuarios usuario, RedirectAttributes flash) {
 		
-		servicioCliente.actualizarCliente(cliente);
+		servicioUsuario.actualizarUsuario(usuario);
 		flash.addFlashAttribute("success", "Usuario editado");
-		return "redirect:/auth/editarCliente";
+		return "redirect:/auth/editarUsuario";
 	}
 }

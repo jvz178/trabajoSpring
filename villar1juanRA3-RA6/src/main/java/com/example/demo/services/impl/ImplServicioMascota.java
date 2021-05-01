@@ -6,12 +6,13 @@ import java.util.List;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.Clientes;
 import com.example.demo.entity.Mascotas;
+import com.example.demo.entity.Usuarios;
 import com.example.demo.repository.RepositorioMascota;
 import com.example.demo.services.ServicioMascota;
 
@@ -54,7 +55,7 @@ public class ImplServicioMascota implements ServicioMascota{
 	}
 
 	@Override
-	public Mascotas obtenerMascotasPorIdCliente(Clientes idCliente) {
+	public Mascotas obtenerMascotasPorIdCliente(Usuarios idCliente) {
 		
 		return repositorioMascota.findByIdCliente(idCliente);
 	}

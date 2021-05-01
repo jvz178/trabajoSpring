@@ -53,34 +53,34 @@
 								<th>Acciones</th>
 							</tr>
 						<thead>
-						<tbody th:each="cliente: ${clientes}">
+						<tbody th:each="usuario: ${usuarios}">
 							<tr>
-								<th th:text=${cliente.id}></th>
-								<th th:text=${cliente.nombre}></th>
-								<th th:text=${cliente.apellidos}></th>
-								<th th:text=${cliente.telefono}></th>
-								<th th:text=${cliente.username}></th>
+								<th th:text=${usuario.id}></th>
+								<th th:text=${usuario.nombre}></th>
+								<th th:text=${usuario.apellidos}></th>
+								<th th:text=${usuario.telefono}></th>
+								<th th:text=${usuario.username}></th>
 								<th>???</th>
-								<th th:text=${cliente.role}></th>
-								<span th:if="${cliente.activado} == ${false}">
+								<th th:text=${usuario.role}></th>
+								<span th:if="${usuario.activado} == ${false}">
 									<th th:text=Desactivado></th>
 								</span>
-								<span th:if="${cliente.activado} == ${true}">
+								<span th:if="${usuario.activado} == ${true}">
 									<th th:text=Activado></th>
 								</span>
-								<th><a th:href="@{/borrarUsuario/}+${cliente.id}">
+								<th><a th:href="@{/borrarUsuario/}+${usuario.id}">
 										<button type="button" class="btn btn-default">
 											<i class="fas fa-dumpster-fire"></i>
 										</button>
-								</a> <a th:href="@{/editarUsuarioAdmin/}+${cliente.id}">
+								</a> <a th:href="@{/editarUsuarioAdmin/}+${usuario.id}">
 										<button type="button" class="btn btn-default">
 											<i class="fas fa-user-edit"></i>
 										</button>
-								</a> <a th:href="@{/activarDesactivarUsuario/}+${cliente.id}">
+								</a> <a th:href="@{/activarDesactivarUsuario/}+${usuario.id}">
 										<button type="button" class="btn btn-default">
-										<span th:if="${cliente.activado} == ${false}">
+										<span th:if="${usuario.activado} == ${false}">
 											<i class="fas fa-user-check"></i> </span>
-										<span th:if="${cliente.activado} == ${true}">
+										<span th:if="${usuario.activado} == ${true}">
 											<i class="fas fa-user-times"></i> </span>
 										</button>
 								</a></th>

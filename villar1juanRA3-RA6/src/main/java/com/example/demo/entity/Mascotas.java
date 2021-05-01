@@ -42,11 +42,11 @@ public class Mascotas {
     
     @ManyToOne
 	@JoinColumn(name="idCliente")
-    private Clientes idCliente;
+    private Usuarios idCliente;
     
     public Mascotas() {}
     
-    public Mascotas(int id, String nombre, String tipo, String raza, Date fechaNacimiento, String foto, Clientes idCliente) {
+    public Mascotas(int id, String nombre, String tipo, String raza, Date fechaNacimiento, String foto, Usuarios idCliente) {
     	
     	this.id=id;
     	this.nombre=nombre;
@@ -105,11 +105,11 @@ public class Mascotas {
     	this.foto = foto;
     }
     
-    public Clientes getIdCliente() {
+    public Usuarios getIdCliente() {
     	return idCliente;
     }
     
-    public void setIdCliente(Clientes idCliente) {
+    public void setIdCliente(Usuarios idCliente) {
     	this.idCliente = idCliente;
     }
 

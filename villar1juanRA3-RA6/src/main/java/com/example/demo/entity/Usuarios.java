@@ -17,8 +17,8 @@ import javax.validation.constraints.Size;
 import org.springframework.beans.factory.annotation.Value;
 
 @Entity
-@Table(name="clientes")
-public class Clientes {
+@Table(name="usuarios")
+public class Usuarios {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -54,9 +54,9 @@ public class Clientes {
 	@OneToMany(mappedBy="idCliente")
 	private List<Mascotas> mascotas = new ArrayList<>();
 	
-	public Clientes() {}
+	public Usuarios() {}
 	
-	public Clientes(int id, String nombre, String apellidos, String telefono, String username, String password, String role, boolean activado) {
+	public Usuarios(int id, String nombre, String apellidos, String telefono, String username, String password, String role, boolean activado) {
 		
 		this.id=id;
 		this.nombre=nombre;

@@ -2,8 +2,8 @@ package com.example.demo.services;
 
 import java.util.List;
 
-import com.example.demo.entity.Clientes;
 import com.example.demo.entity.Mascotas;
+import com.example.demo.entity.Usuarios;
 
 
 
@@ -13,6 +13,6 @@ public interface ServicioMascota {
 	public abstract int quitarMascota(int id);
 	public abstract Mascotas actualizarMascota(Mascotas mascota);
 	public abstract Mascotas obtenerMascotaPorId(int id) throws Exception;
-	public abstract Mascotas obtenerMascotasPorIdCliente(Clientes idCliente);
+	public abstract Mascotas obtenerMascotasPorIdCliente(Usuarios idCliente);
 	//Usar countBy para el limite de 3
 }

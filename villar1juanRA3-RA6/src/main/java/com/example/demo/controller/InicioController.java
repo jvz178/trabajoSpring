@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+
 import javax.validation.Valid;
 
 
@@ -16,8 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.demo.entity.Clientes;
-import com.example.demo.services.ServicioCliente;
+import com.example.demo.entity.Usuarios;
+import com.example.demo.services.ServicioUsuario;
 
 @Controller
 public class InicioController {
@@ -26,8 +27,8 @@ public class InicioController {
 	private static final String VISTA_INICIO="iniciarSesion";
 	
 	@Autowired
-	@Qualifier("servicioCliente")
-	private ServicioCliente servicioCliente;
+	@Qualifier("servicioUsuario")
+	private ServicioUsuario servicioUsuario;
 	
 	@GetMapping("/")
 	public String inicio() {
@@ -37,14 +38,14 @@ public class InicioController {
 	
 	@GetMapping("/auth/registrarse")
 	public String registrarse(Model model) {
-		model.addAttribute("cliente", new Clientes());
+		model.addAttribute("usuario", new Usuarios());
 		return VISTA_REGISTRO;
 	}
 	
 	@PostMapping("/auth/nuevoCliente")
-	public String nuevoCliente(@ModelAttribute Clientes cliente, RedirectAttributes flash) {
+	public String nuevoCliente(@ModelAttribute Usuarios usuario, RedirectAttributes flash) {
 		
-		servicioCliente.registrar(cliente);
+		servicioUsuario.registrar(usuario);
 		flash.addFlashAttribute("success", "Usuario registrado");
 		return "redirect:/auth/login";
 	}

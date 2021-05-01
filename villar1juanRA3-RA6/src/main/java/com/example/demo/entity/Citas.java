@@ -29,7 +29,7 @@ public class Citas {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idVeterinario", referencedColumnName= "id")
-	private Veterinarios idVeterinario;
+	private Usuarios idVeterinario;
 	
 	@NotNull
 	@Size(max=30)
@@ -50,7 +50,7 @@ public class Citas {
 	
 	public Citas() {}
 	
-	public Citas(int id, Mascotas idMascota, Veterinarios idVeterinario, String raza, Date fecha, String motivo, String informe, int realizada) {
+	public Citas(int id, Mascotas idMascota, Usuarios idVeterinario, String raza, Date fecha, String motivo, String informe, int realizada) {
 		
 		this.id=id;
 		this.idMascota=idMascota;
@@ -78,11 +78,11 @@ public class Citas {
 		this.idMascota = idMascota;
 	}
 
-	public Veterinarios getIdVeterinario() {
+	public Usuarios getIdVeterinario() {
 		return idVeterinario;
 	}
 
-	public void setIdVeterinario(Veterinarios idVeterinario) {
+	public void setIdVeterinario(Usuarios idVeterinario) {
 		this.idVeterinario = idVeterinario;
 	}
 

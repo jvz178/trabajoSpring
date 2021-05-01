@@ -52,17 +52,17 @@
 								<th>Pedir cita</th>
 							</tr>
 						<thead>
-						<tbody th:each="cliente: ${clientes}">
-						<span th:if="${cliente.role} == 'ROLE_VET'">
+						<tbody th:each="usuario: ${usuarios}">
+						<span th:if="${usuario.role} == 'ROLE_VET'">
 							<tr>
-								<th th:text=${cliente.id}></th>
-								<th th:text=${cliente.nombre}></th>
-								<th th:text=${cliente.apellidos}></th>
-								<th th:text=${cliente.telefono}></th>
-								<th th:text=${cliente.username}></th>
+								<th th:text=${usuario.id}></th>
+								<th th:text=${usuario.nombre}></th>
+								<th th:text=${usuario.apellidos}></th>
+								<th th:text=${usuario.telefono}></th>
+								<th th:text=${usuario.username}></th>
 								<th>???</th>
-								<th th:text=${cliente.role}></th>
-								<th><a th:href="@{/borrarUsuario/}+${cliente.id}">
+								<th th:text=${usuario.role}></th>
+								<th><a th:href="@{/borrarUsuario/}+${usuario.id}">
 										<button type="button" class="btn btn-default">
 											<i class="far fa-address-book"></i>
 										</button>

@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,29 +14,29 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.entity.Clientes;
 import com.example.demo.entity.Mascotas;
-import com.example.demo.services.ServicioCliente;
+import com.example.demo.entity.Usuarios;
 import com.example.demo.services.ServicioMascota;
+import com.example.demo.services.ServicioUsuario;
 
 @Controller
 public class MascotasController {
 
 	private int idEditar, idMascotaCita;
-	private Clientes idCliente;
+	private Usuarios idCliente;
 	
 	@Autowired
 	@Qualifier("servicioMascota")
 	private ServicioMascota servicioMascota;
 	
 	@Autowired
-	@Qualifier("servicioCliente")
-	private ServicioCliente servicioCliente;
+	@Qualifier("servicioUsuario")
+	private ServicioUsuario servicioUsuario;
 	
-	public Clientes getCliente() {
+	public Usuarios getCliente() {
 		
 		UserDetails ud = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Clientes cliente = servicioCliente.obtenerClientePorUsername(ud.getUsername());
+		Usuarios cliente = servicioUsuario.obtenerPorUsername(ud.getUsername());
 		return cliente;
 	}
 	
@@ -43,7 +44,7 @@ public class MascotasController {
 	@GetMapping("/tablaMascotas")
 	public String tablaMascotas(Model model) throws Exception {
 		
-		Clientes cliente = getCliente();
+		Usuarios cliente = getCliente();
 		model.addAttribute("mascotas", cliente.getMascotas());
 		return "tablaMascotas";
 	}
@@ -93,7 +94,7 @@ public class MascotasController {
 	public String pedirCita(Model model, @PathVariable int id) {
 		
 		idMascotaCita=id;
-		model.addAttribute("clientes", servicioCliente.listarCliente());
+		model.addAttribute("clientes", servicioUsuario.listarUsuario());
 		return "pedirCita";
 	}
 }
