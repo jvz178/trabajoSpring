@@ -15,7 +15,7 @@ import com.example.demo.entity.Usuarios;
 import com.example.demo.services.ServicioUsuario;
 
 @Controller
-public class EditarClienteController {
+public class EditarUsuarioController {
 
 	@Autowired
 	@Qualifier("servicioUsuario")
@@ -29,8 +29,8 @@ public class EditarClienteController {
 		return "editarUsuario";
 	}
 	
-	@PostMapping("/auth/clienteEditado")
-	public String clienteEditado(@ModelAttribute Usuarios usuario, RedirectAttributes flash) {
+	@PostMapping("/auth/usuarioEditado")
+	public String usuarioEditado(@ModelAttribute Usuarios usuario, RedirectAttributes flash) {
 		
 		servicioUsuario.actualizarUsuario(usuario);
 		flash.addFlashAttribute("success", "Usuario editado");
