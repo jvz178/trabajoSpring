@@ -44,7 +44,7 @@ public class MascotasController {
 	public String tablaMascotas(Model model) throws Exception {
 		
 		Clientes cliente = getCliente();
-		model.addAttribute("mascotas", servicioMascota.obtenerMascotasPorIdCliente(cliente));
+		model.addAttribute("mascotas", cliente.getMascotas());
 		return "tablaMascotas";
 	}
 	
