@@ -47,8 +47,6 @@
 								<th>Apellidos</th>
 								<th>Telefono</th>
 								<th>Username</th>
-								<th>Password</th>
-								<th>Rol</th>
 								<th>Pedir cita</th>
 							</tr>
 						<thead>
@@ -60,9 +58,7 @@
 								<th th:text=${usuario.apellidos}></th>
 								<th th:text=${usuario.telefono}></th>
 								<th th:text=${usuario.username}></th>
-								<th>???</th>
-								<th th:text=${usuario.role}></th>
-								<th><a th:href="@{/borrarUsuario/}+${usuario.id}">
+								<th><a th:href="@{/citaPedida/}+${usuario.id}">
 										<button type="button" class="btn btn-default">
 											<i class="far fa-address-book"></i>
 										</button>

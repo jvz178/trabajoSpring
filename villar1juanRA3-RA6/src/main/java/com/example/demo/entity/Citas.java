@@ -32,30 +32,24 @@ public class Citas {
 	private Usuarios idVeterinario;
 	
 	@NotNull
-	@Size(max=30)
-	private String raza;
-	
-	@NotNull
 	private Date fecha;
 	
 	@NotNull
 	@Size(max=100)
 	private String motivo;
 	
-	@NotNull
 	private String informe;
 	
 	@NotNull
-	private int realizada;
+	private boolean realizada;
 	
 	public Citas() {}
 	
-	public Citas(int id, Mascotas idMascota, Usuarios idVeterinario, String raza, Date fecha, String motivo, String informe, int realizada) {
+	public Citas(int id, Mascotas idMascota, Usuarios idVeterinario, Date fecha, String motivo, String informe, boolean realizada) {
 		
 		this.id=id;
 		this.idMascota=idMascota;
 		this.idVeterinario=idVeterinario;
-		this.raza=raza;
 		this.fecha=fecha;
 		this.motivo=motivo;
 		this.informe=informe;
@@ -86,14 +80,6 @@ public class Citas {
 		this.idVeterinario = idVeterinario;
 	}
 
-	public String getRaza() {
-		return raza;
-	}
-
-	public void setRaza(String raza) {
-		this.raza = raza;
-	}
-
 	public Date getFecha() {
 		return fecha;
 	}
@@ -118,11 +104,11 @@ public class Citas {
 		this.informe = informe;
 	}
 
-	public int getRealizada() {
+	public boolean getRealizada() {
 		return realizada;
 	}
 
-	public void setRealizada(int realizada) {
+	public void setRealizada(boolean realizada) {
 		this.realizada = realizada;
 	}
 	
