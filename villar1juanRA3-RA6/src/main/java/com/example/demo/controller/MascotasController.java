@@ -28,7 +28,7 @@ import com.example.demo.services.ServicioUsuario;
 @Controller
 public class MascotasController {
 
-	private int idEditar, idMascotaCita;
+	private int idEditar, idMascotaCita, idVeterinarioCita;
 	private Date fechaCita;
 	private Usuarios idCliente;
 	private Citas citaPedida;
@@ -113,11 +113,8 @@ public class MascotasController {
 	@PostMapping("/datosEstablecidos")
 	public String datosEstablecidos(@ModelAttribute Citas cita) throws Exception {
 		
-		Mascotas mascota = servicioMascota.obtenerMascotaPorId(idMascotaCita);
-		cita.setIdMascota(mascota);
 		cita.setRealizada(false);
 		citaPedida=cita;
-		System.out.println("FECHA"+citaPedida.getFecha());
 		return "redirect:/pedirCita";
 	}
 	
@@ -127,12 +124,22 @@ public class MascotasController {
 		return "pedirCita";
 	}
 	
-	@GetMapping("/citaPedida/{id}")
-	public String citaPedida(@PathVariable int id) throws Exception {
+	@GetMapping("/confirmarCita/{id}")
+	public String confirmarCita(@PathVariable int id) throws Exception {
 		
-		Usuarios usuario = servicioUsuario.obtenerUsuarioPorId(id);
+		idVeterinarioCita=id;
+		return "confirmarCita";
+	}
+	
+	@PostMapping("/citaConfirmada")
+	public String citaConfirmada() throws Exception {
+		
+		Mascotas mascota = servicioMascota.obtenerMascotaPorId(idMascotaCita);
+		citaPedida.setIdMascota(mascota);
+		Usuarios usuario = servicioUsuario.obtenerUsuarioPorId(idVeterinarioCita);
 		citaPedida.setIdVeterinario(usuario);
+		
 		servicioCita.añadirCita(citaPedida);
-		return "tablaMascotas";
+		return "redirect:/tablaMascotas";
 	}
 }

@@ -20,7 +20,6 @@ public class Citas {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Size(max=11)
 	private int id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
