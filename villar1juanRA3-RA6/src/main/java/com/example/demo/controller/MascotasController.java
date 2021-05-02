@@ -99,7 +99,7 @@ public class MascotasController {
 		
 		mascota.setIdCliente(getCliente());
 		servicioMascota.añadirMascota(mascota);
-		return "tablaMascotas";
+		return "logueado";
 	}
 	
 	@GetMapping("/datosCita/{id}")
@@ -120,6 +120,7 @@ public class MascotasController {
 	
 	@GetMapping("/pedirCita")
 	public String pedirCita(Model model) {
+		System.out.println("FECHA: "+citaPedida.getFecha());
 		model.addAttribute("usuarios", servicioUsuario.listarUsuario());
 		return "pedirCita";
 	}

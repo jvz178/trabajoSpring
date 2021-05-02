@@ -1,5 +1,7 @@
 package com.example.demo.services.impl;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -13,8 +15,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Citas;
+import com.example.demo.entity.Usuarios;
 import com.example.demo.repository.RepositorioCita;
+import com.example.demo.repository.RepositorioUsuario;
 import com.example.demo.services.ServicioCita;
+import com.example.demo.services.ServicioUsuario;
 
 @Service("servicioCita")
 public class ImplServicioCita implements ServicioCita {
@@ -23,6 +28,10 @@ public class ImplServicioCita implements ServicioCita {
 	@Qualifier("repositorioCita")
 	private RepositorioCita repositorioCita;
 
+	@Autowired
+	@Qualifier("servicioUsuario")
+	private ServicioUsuario servicioUsuario;
+	
 	public List<Citas> listarCita() {
 		return repositorioCita.findAll();
 	}
@@ -39,5 +48,67 @@ public class ImplServicioCita implements ServicioCita {
 	public Citas actualizarCita(Citas cita) {
 		return repositorioCita.save(cita);
 	}
-
+	
+	public List<Usuarios> veterinariosLibres(Date fechaSolicitada) {
+		System.out.println("HOLAAAAAAAAAAA");
+		List<Citas> listaCitas = listarCita();
+		List<Usuarios> usuarios = servicioUsuario.listarUsuario();
+		Usuarios[] veterinariosFecha = new Usuarios[usuarios.size()];
+		Usuarios[] disponibles = new Usuarios[usuarios.size()];
+		int contador=0, contador2=0;
+		
+		for(Usuarios u : usuarios) {
+			
+			if(u.getRole().equals("ROLE_VET")) {
+				
+				veterinariosFecha[contador]=u;
+				contador++;
+			}
+		}
+		
+		for(Citas cita : listaCitas) {
+			
+			if(cita.getFecha()==fechaSolicitada) {
+				
+				veterinariosFecha[contador]=cita.getIdVeterinario();
+				contador++;
+			}
+		}
+		
+		for(Usuarios usuario : usuarios) {
+			System.out.println("HOLAAAAAAAAAAAAAAAAAAAA3");
+			System.out.println("ROL: "+usuario.getRole());
+			if(usuario.getRole().equals("ROLE_VET")) {
+				System.out.println("ENTRA EN ROL");
+				int repetido=-1;
+				
+				if(veterinariosFecha == null) {
+					
+					break;
+				}
+				
+				for(Usuarios veterinarioFecha : veterinariosFecha) {
+					System.out.println("ENTRA EN VETERINARIOSFECHA");
+					if(usuario==veterinarioFecha) {
+						
+						repetido++;
+					}
+				}
+				
+				if(repetido<3) {
+					System.out.println("ENTRA EN REPETIDO <3");
+					disponibles[contador2]=usuario;
+					contador2++;
+				}
+			}
+		}
+		
+		List<Usuarios> listaFinal = new ArrayList<Usuarios>();
+		for(Usuarios us : disponibles) {
+			
+			listaFinal.add(us);
+		}
+		
+		return listaFinal;
+	}
 }
