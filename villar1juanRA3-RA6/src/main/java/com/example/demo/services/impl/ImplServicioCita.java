@@ -50,10 +50,10 @@ public class ImplServicioCita implements ServicioCita {
 		return repositorioCita.save(cita);
 	}
 	
-	/*public Citas listarCitaPorMascota(Mascotas mascota) {
+	public Citas listarCitaPorMascota(Mascotas mascota) {
 		
-		return repositorioCita.findByMascota(mascota);
-	}*/
+		return repositorioCita.findByIdMascota(mascota);
+	}
 	
 	
 	

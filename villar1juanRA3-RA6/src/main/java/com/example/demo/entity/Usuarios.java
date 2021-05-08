@@ -54,6 +54,9 @@ public class Usuarios {
 	@OneToMany(mappedBy="idCliente")
 	private List<Mascotas> mascotas = new ArrayList<>();
 	
+	@OneToMany(mappedBy="idVeterinario")
+	private List<Citas> citasVeterinario = new ArrayList<>();
+	
 	public Usuarios() {}
 	
 	public Usuarios(int id, String nombre, String apellidos, String telefono, String username, String password, String role, boolean activado) {
@@ -138,6 +141,14 @@ public class Usuarios {
 
 	public void setMascotas(List<Mascotas> mascotas) {
 		this.mascotas = mascotas;
+	}
+
+	public List<Citas> getCitasVeterinario() {
+		return citasVeterinario;
+	}
+
+	public void setCitasVeterinario(List<Citas> citasVeterinario) {
+		this.citasVeterinario = citasVeterinario;
 	}
 	
 }
