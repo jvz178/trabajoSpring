@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Citas;
+import com.example.demo.entity.Mascotas;
 import com.example.demo.entity.Usuarios;
 import com.example.demo.repository.RepositorioCita;
 import com.example.demo.repository.RepositorioUsuario;
@@ -49,7 +50,19 @@ public class ImplServicioCita implements ServicioCita {
 		return repositorioCita.save(cita);
 	}
 	
-	public List<Usuarios> veterinariosLibres(Date fechaSolicitada) {
+	/*public Citas listarCitaPorMascota(Mascotas mascota) {
+		
+		return repositorioCita.findByMascota(mascota);
+	}*/
+	
+	
+	
+	
+	
+	
+	
+	
+	/*public List<Usuarios> veterinariosLibres(Date fechaSolicitada) {
 		System.out.println("HOLAAAAAAAAAAA");
 		List<Citas> listaCitas = listarCita();
 		List<Usuarios> usuarios = servicioUsuario.listarUsuario();
@@ -110,5 +123,5 @@ public class ImplServicioCita implements ServicioCita {
 		}
 		
 		return listaFinal;
-	}
+	}*/
 }

@@ -13,4 +13,5 @@ public interface ServicioUsuario {
 	public abstract Usuarios obtenerUsuarioPorId(int id) throws Exception;
 	public abstract Usuarios obtenerPorUsername(String username);
 	public abstract void activarDesactivarUsuario(Usuarios usuario);
+	public abstract Usuarios getUsuario();
 }

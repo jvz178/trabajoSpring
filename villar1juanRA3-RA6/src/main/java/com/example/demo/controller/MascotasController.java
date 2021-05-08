@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-
-
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,18 +43,11 @@ public class MascotasController {
 	@Qualifier("servicioCita")
 	private ServicioCita servicioCita;
 	
-	public Usuarios getCliente() {
-		
-		UserDetails ud = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Usuarios cliente = servicioUsuario.obtenerPorUsername(ud.getUsername());
-		return cliente;
-	}
-	
 	@PreAuthorize("hasRole('ROLE_CLI')")
 	@GetMapping("/tablaMascotas")
 	public String tablaMascotas(Model model) throws Exception {
 		
-		Usuarios cliente = getCliente();
+		Usuarios cliente = servicioUsuario.getUsuario();
 		model.addAttribute("mascotas", cliente.getMascotas());
 		return "tablaMascotas";
 	}
@@ -97,7 +88,7 @@ public class MascotasController {
 	@PostMapping("/mascotaRegistrada")
 	public String mascotaRegistrada(@ModelAttribute Mascotas mascota) {
 		
-		mascota.setIdCliente(getCliente());
+		mascota.setIdCliente(servicioUsuario.getUsuario());
 		servicioMascota.añadirMascota(mascota);
 		return "logueado";
 	}

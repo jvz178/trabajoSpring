@@ -5,8 +5,6 @@ import java.util.List;
 import com.example.demo.entity.Mascotas;
 import com.example.demo.entity.Usuarios;
 
-
-
 public interface ServicioMascota {
 	public abstract List<Mascotas> listarMascota();
 	public abstract Mascotas añadirMascota(Mascotas mascota);

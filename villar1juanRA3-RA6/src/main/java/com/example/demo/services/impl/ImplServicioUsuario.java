@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -99,5 +100,13 @@ public class ImplServicioUsuario implements UserDetailsService, ServicioUsuario{
 	public Usuarios obtenerPorUsername(String username) {
 		
 		return repositorioUsuario.findByUsername(username);
+	}
+	
+	@Override
+	public Usuarios getUsuario() {
+		
+		UserDetails ud = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Usuarios usuario = obtenerPorUsername(ud.getUsername());
+		return usuario;
 	}
 }
