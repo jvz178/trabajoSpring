@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="citas")
-public class Citas {
+public class Citas implements Comparable<Citas>{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -110,6 +110,12 @@ public class Citas {
 
 	public void setRealizada(boolean realizada) {
 		this.realizada = realizada;
+	}
+
+	@Override
+	public int compareTo(Citas cita) {
+		
+		return fecha.compareTo(cita.getFecha());
 	}
 	
 }

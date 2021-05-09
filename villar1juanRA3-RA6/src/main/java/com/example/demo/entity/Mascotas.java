@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import java.sql.Date;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -121,7 +122,8 @@ public class Mascotas {
     }
 
 	public List<Citas> getCitasMascota() {
-		//Collections.sort(citasMascota);
+		
+		Collections.sort(citasMascota,Collections.reverseOrder());
 		return citasMascota;
 	}
 

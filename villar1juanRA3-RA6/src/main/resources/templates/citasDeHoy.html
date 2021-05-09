@@ -18,13 +18,8 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-					<li sec:authorize="hasRole('ROLE_CLI')" class="nav-item">
-					<a class="nav-link js-scroll-trigger" th:href="@{/tablaMascotas}">
+					<a class="nav-link js-scroll-trigger" th:href="@{/logueado}">
 					Atras</a></li>
-					<li sec:authorize="hasRole('ROLE_VET')" class="nav-item">
-					<a class="nav-link js-scroll-trigger" th:href="@{/mostrarMascotas}">
-					Atras</a></li>
-					</li>
 				</ul>
 			</div>
 		</div>
@@ -33,7 +28,7 @@
 	<header class="masthead">
 		<div class="container d-flex h-100 align-items-center">
 			<div class="mx-auto text-center">
-				<h1 class="mx-auto my-0 text-uppercase">Historial Citas</h1>
+				<h1 class="mx-auto my-0 text-uppercase">Citas de hoy</h1>
 			</div>
 		</div>
 	</header>
@@ -46,7 +41,7 @@
 					<table class="table table-striped table-borderer">
 						<thead>
 							<tr>
-								<th>Fecha</th>
+							    <th>Id mascota</th>
 								<th>Motivo</th>
 								<th>Informe</th>
 								<th>Realizada</th>
@@ -54,7 +49,7 @@
 						<thead>
 						<tbody th:each="cita: ${citas}">
 							<tr>
-								<th th:text=${cita.fecha}></th>
+								<th th:text=${cita.idMascota}></th>
 								<th th:text=${cita.motivo}></th>
 								<th th:text=${cita.informe}></th>
 								<th th:text=${cita.realizada}></th>
