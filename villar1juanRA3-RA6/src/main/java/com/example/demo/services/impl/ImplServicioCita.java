@@ -54,6 +54,11 @@ public class ImplServicioCita implements ServicioCita {
 		
 		return repositorioCita.findByIdMascota(mascota);
 	}
+
+	@Override
+	public Citas obtenerCitaPorId(int id) throws Exception{
+		return repositorioCita.findById(id);
+	}
 	
 	
 	

@@ -161,42 +161,26 @@ public class Usuarios {
 		Date fecha = Date.valueOf(fechaHoy);
 		Citas[] citasDescartar = new Citas[fechaHoy.length()];
 		int contador=0;
-		
-		System.out.println("INICIO");
-		
+				
 		//List<Citas> citasHoy = citas.removeIf(cita -> cita.getFecha() = LocalDate.now());
 		//citas.stream().filter(cita -> cita.getFecha() = LocalDate.now()
 		
 		for(Citas cita : citas) {
 			
-			System.out.println("FOR1");
 			if((cita.getFecha().toString().equals(fecha.toString()))==false) {
-				System.out.println("CITA: "+cita.getFecha());
-				System.out.println("FECHA ACTUAL: "+fecha);
-				System.out.println("ENTRA");
 				citasDescartar[contador]=cita;
 				contador++;
-				System.out.println("ENTRA2");
 			}
-			System.out.println("FOR2");
 		}
 		
 		for(Citas ct : citasDescartar) {
 			
 			if(ct != null) {
 				
-				System.out.println(ct.toString());
 				citasDeHoy.remove(ct);
-				System.out.println("LISTA INICIO");
-				for(Citas cts : citasDeHoy) {
-					
-					System.out.println(cts.toString());
-				}
-				System.out.println("LISTA FINAL");
 			}
 		}
 		
-		System.out.println("FINAL");
 		return citasDeHoy;
 	}
 }

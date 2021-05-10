@@ -49,7 +49,10 @@
 								<th>Raza</th>
 								<th>Fecha de nacimiento</th>
 								<th>Foto</th>
-								<th>Acciones</th>
+								<li sec:authorize="hasRole('ROLE_VET')" class="nav-item">
+								<th>Datos Cliente</th>
+								</li>
+								<th>Historial</th>
 							</tr>
 						<thead>
 						<tbody th:each="mascota: ${mascotas}">
@@ -60,6 +63,9 @@
 								<th th:text=${mascota.raza}></th>
 								<th th:text=${mascota.fechaNacimiento}></th>
 								<th th:text=${mascota.foto}></th>
+								<li sec:authorize="hasRole('ROLE_VET')" class="nav-item">
+								<th th:text=${mascota.idCliente.nombre}></th>
+								</li>
 								<th>
 								<li sec:authorize="hasRole('ROLE_CLI')" class="nav-item">
 								<a th:href="@{/borrarMascota/}+${mascota.id}">

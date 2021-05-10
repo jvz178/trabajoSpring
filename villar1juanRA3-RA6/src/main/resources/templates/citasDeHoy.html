@@ -41,18 +41,25 @@
 					<table class="table table-striped table-borderer">
 						<thead>
 							<tr>
-							    <th>Id mascota</th>
+							    <th>Datos mascota</th>
 								<th>Motivo</th>
 								<th>Informe</th>
 								<th>Realizada</th>
+								<th>Realizar</th>
 							</tr>
 						<thead>
 						<tbody th:each="cita: ${citas}">
 							<tr>
-								<th th:text=${cita.idMascota}></th>
+								<th th:text="${cita.idMascota.nombre}+
+								'/'+${cita.idMascota.tipo}+'/'+${cita.idMascota.raza}">
 								<th th:text=${cita.motivo}></th>
 								<th th:text=${cita.informe}></th>
 								<th th:text=${cita.realizada}></th>
+								<th><a th:href="@{/realizarCita/}+${cita.id}">
+										<button type="button" class="btn btn-default">
+											<i class="fas fa-cat"></i>
+										</button>
+								</a></th>
 							</tr>
 						</tbody>
 					</table>

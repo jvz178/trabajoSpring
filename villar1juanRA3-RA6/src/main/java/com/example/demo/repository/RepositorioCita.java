@@ -17,4 +17,5 @@ import com.example.demo.entity.Mascotas;
 public interface RepositorioCita extends JpaRepository<Citas, Serializable>{
 
 	public abstract Citas findByIdMascota(Mascotas mascota);
+	public abstract Citas findById(int id);
 }
