@@ -123,6 +123,11 @@ public class Mascotas {
 
 	public List<Citas> getCitasMascota() {
 		
+		return citasMascota;
+	}
+	
+	public List<Citas> getCitasMascotaOrdenFecha() {
+		
 		Collections.sort(citasMascota,Collections.reverseOrder());
 		return citasMascota;
 	}
@@ -130,5 +135,5 @@ public class Mascotas {
 	public void setCitasMascota(List<Citas> citasMascota) {
 		this.citasMascota = citasMascota;
 	}
-
+	
 }

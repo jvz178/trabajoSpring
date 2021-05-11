@@ -41,7 +41,7 @@ public class CitasController {
 	public String historialCitas(Model model, @PathVariable int id) throws Exception {
 			
 		Mascotas mascota = servicioMascota.obtenerMascotaPorId(id);
-		model.addAttribute("citas", mascota.getCitasMascota());
+		model.addAttribute("citas", mascota.getCitasMascotaOrdenFecha());
 		return "historialCitas";
 	}
 	

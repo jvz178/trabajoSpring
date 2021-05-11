@@ -41,19 +41,19 @@
 						<thead>
 							<tr>
 							    <th>Mascota</th>
+							    <th>Veterinario</th>
 							    <th>Fecha</th>
 								<th>Motivo</th>
-								<th>Informe</th>
-								<th>Realizada</th>
 							</tr>
 						<thead>
 						<tbody th:each="cita: ${citas}">
 							<tr>
-							    <th th:text=${cita.idMascota.nombre}></th>
+							    <th th:text="${cita.idMascota.nombre}+' (id: '+
+							     ${cita.idMascota.id}+')'"></th>
+							    <th th:text="${cita.idVeterinario.nombre}+' (id: '+
+							    ${cita.idVeterinario.id}+')'"></th>
 							    <th th:text=${cita.fecha}></th>
 								<th th:text=${cita.motivo}></th>
-								<th th:text=${cita.informe}></th>
-								<th th:text=${cita.realizada}></th>
 							</tr>
 						</tbody>
 					</table>

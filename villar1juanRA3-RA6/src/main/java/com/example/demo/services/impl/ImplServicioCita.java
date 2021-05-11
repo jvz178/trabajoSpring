@@ -2,6 +2,7 @@ package com.example.demo.services.impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -80,7 +81,8 @@ public class ImplServicioCita implements ServicioCita {
 				}
 			}
 		}
-					
+		
+		Collections.sort(citasPendientes);
 		return citasPendientes;
 	}
 	
