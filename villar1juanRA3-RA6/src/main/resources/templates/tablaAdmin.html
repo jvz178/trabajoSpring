@@ -69,20 +69,26 @@
 									<th th:text=Activado></th>
 								</span>
 								<th><a th:href="@{/borrarUsuario/}+${usuario.id}">
+								        <abbr title="Borrar usuario">
 										<button type="button" class="btn btn-default">
 											<i class="fas fa-dumpster-fire"></i>
 										</button>
+										</abbr>
 								</a> <a th:href="@{/editarUsuarioAdmin/}+${usuario.id}">
+								        <abbr title="Editar usuario">
 										<button type="button" class="btn btn-default">
 											<i class="fas fa-user-edit"></i>
 										</button>
+										</abbr>
 								</a> <a th:href="@{/activarDesactivarUsuario/}+${usuario.id}">
+								        <abbr title="Activar/Desactivar usuario">
 										<button type="button" class="btn btn-default">
 										<span th:if="${usuario.activado} == ${false}">
 											<i class="fas fa-user-check"></i> </span>
 										<span th:if="${usuario.activado} == ${true}">
 											<i class="fas fa-user-times"></i> </span>
 										</button>
+										</abbr>
 								</a></th>
 							</tr>
 						</tbody>

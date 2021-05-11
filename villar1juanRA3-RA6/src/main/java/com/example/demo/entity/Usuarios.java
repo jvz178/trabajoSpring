@@ -159,7 +159,7 @@ public class Usuarios {
 		List<Citas> citasDeHoy = citas;
 		String fechaHoy=LocalDate.now().toString();
 		Date fecha = Date.valueOf(fechaHoy);
-		Citas[] citasDescartar = new Citas[fechaHoy.length()];
+		Citas[] citasDescartar = new Citas[citas.size()];
 		int contador=0;
 		
 		for(Citas cita : citas) {

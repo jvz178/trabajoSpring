@@ -56,9 +56,11 @@
 								<th th:text=${cita.informe}></th>
 								<th th:text=${cita.realizada}></th>
 								<th><a th:href="@{/realizarCita/}+${cita.id}">
+								        <abbr title="Realizar cita">
 										<button type="button" class="btn btn-default">
 											<i class="fas fa-cat"></i>
 										</button>
+										</abbr>
 								</a></th>
 							</tr>
 						</tbody>

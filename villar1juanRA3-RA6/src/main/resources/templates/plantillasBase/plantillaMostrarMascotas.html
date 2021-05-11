@@ -63,22 +63,29 @@
 								<th>
 								<li sec:authorize="hasRole('ROLE_CLI')" class="nav-item">
 								<a th:href="@{/borrarMascota/}+${mascota.id}">
+								        <abbr title="Borrar mascota">
 										<button type="button" class="btn btn-default">
 											<i class="fas fa-dumpster-fire"></i>
 										</button>
+										</abbr>
 								</a> <a th:href="@{/editarMascota/}+${mascota.id}">
+								        <abbr title="Editar mascota">
 										<button type="button" class="btn btn-default">
 											<i class="fas fa-paw"></i>
 										</button>
+										</abbr>
 								</a> <a th:href="@{/datosCita/}+${mascota.id}">
+								        <abbr title="Datos cita mascota">
 										<button type="button" class="btn btn-default">
 										    <i class="fas fa-edit"></i>
-										</button> </a>
+										</button> </abbr> </a>
 								</li>
 								</a> <a th:href="@{/historialCitas/}+${mascota.id}">
+								        <abbr title="Historial mascota">
 										<button type="button" class="btn btn-default">
 										    <i class="far fa-clipboard"></i>
 										</button>
+										</abbr>
 								</a>
 								</th>
 							</tr>
@@ -89,8 +96,9 @@
 				<br>
 				<form class="form-inline" th:action="@{/nuevaMascota}">
 					<div class="mx-auto text-center">
+					    <abbr title="Nueva mascota">
 						<button class="btn btn-primary js-scroll-trigger" type="submit">
-						<i class="fas fa-plus"></i></button>
+						<i class="fas fa-plus"></i></button></abbr>
 					</div>
 				</form>
 				</li>
