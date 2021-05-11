@@ -49,10 +49,7 @@
 								<th>Raza</th>
 								<th>Fecha de nacimiento</th>
 								<th>Foto</th>
-								<li sec:authorize="hasRole('ROLE_VET')" class="nav-item">
-								<th>Datos Cliente</th>
-								</li>
-								<th>Historial</th>
+								<th>Acciones</th>
 							</tr>
 						<thead>
 						<tbody th:each="mascota: ${mascotas}">
@@ -63,9 +60,6 @@
 								<th th:text=${mascota.raza}></th>
 								<th th:text=${mascota.fechaNacimiento}></th>
 								<th th:text=${mascota.foto}></th>
-								<li sec:authorize="hasRole('ROLE_VET')" class="nav-item">
-								<th th:text=${mascota.idCliente.nombre}></th>
-								</li>
 								<th>
 								<li sec:authorize="hasRole('ROLE_CLI')" class="nav-item">
 								<a th:href="@{/borrarMascota/}+${mascota.id}">
@@ -79,13 +73,14 @@
 								</a> <a th:href="@{/datosCita/}+${mascota.id}">
 										<button type="button" class="btn btn-default">
 										    <i class="fas fa-edit"></i>
-										</button>
+										</button> </a>
 								</li>
 								</a> <a th:href="@{/historialCitas/}+${mascota.id}">
 										<button type="button" class="btn btn-default">
 										    <i class="far fa-clipboard"></i>
 										</button>
-								</a></th>
+								</a>
+								</th>
 							</tr>
 						</tbody>
 					</table>

@@ -1,6 +1,7 @@
 package com.example.demo.services.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -58,6 +59,46 @@ public class ImplServicioCita implements ServicioCita {
 	@Override
 	public Citas obtenerCitaPorId(int id) throws Exception{
 		return repositorioCita.findById(id);
+	}
+
+	@Override
+	public List<Citas> obtenerCitaPendientesPorMascota(List<Mascotas> mascotas) {
+		
+		List<Citas> citas = listarCita();
+		Citas[] citasPendientes = new Citas[citas.size()];
+		int contador = 0;
+		
+		for(Citas cita : citas) {
+			
+			for(Mascotas mascota : mascotas) {
+				
+				if(cita.getIdMascota()==mascota) {
+					
+					if(cita.getRealizada()==false) {
+						
+						citasPendientes[contador]=cita;
+						contador++;
+					}
+				}
+			}
+		}
+		
+		List<Citas> citasFinal = Arrays.asList(citasPendientes);
+		
+		/*for(Citas ct : citasFinal ) {
+			
+			if(ct==null) {
+				
+				citasFinal.remove(ct);
+			}
+		}*/
+		
+		for(Citas x : citasFinal) {
+			
+			System.out.println(x.getMotivo());
+		}
+			
+		return citasFinal;
 	}
 	
 	

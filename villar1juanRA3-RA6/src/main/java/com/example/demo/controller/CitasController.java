@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.entity.Citas;
 import com.example.demo.entity.Mascotas;
+import com.example.demo.entity.Usuarios;
 import com.example.demo.services.ServicioCita;
 import com.example.demo.services.ServicioMascota;
 import com.example.demo.services.ServicioUsuario;
@@ -42,5 +43,13 @@ public class CitasController {
 		Mascotas mascota = servicioMascota.obtenerMascotaPorId(id);
 		model.addAttribute("citas", mascota.getCitasMascota());
 		return "historialCitas";
+	}
+	
+	@GetMapping("/citasPendientes")
+	public String citasPendientes(Model model) {
+		
+		Usuarios cliente = servicioUsuario.getUsuario();
+		model.addAttribute("citas", servicioCita.obtenerCitaPendientesPorMascota(cliente.getMascotas()));
+		return "citasPendientes";
 	}
 }

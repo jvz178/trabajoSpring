@@ -17,4 +17,5 @@ public interface ServicioCita {
 	//public abstract List<Usuarios> veterinariosLibres(Date fechaSolicitada);
 	public abstract Citas listarCitaPorMascota(Mascotas mascota);
 	public abstract Citas obtenerCitaPorId(int id) throws Exception;
+	public abstract List<Citas> obtenerCitaPendientesPorMascota(List<Mascotas> mascotas);
 }

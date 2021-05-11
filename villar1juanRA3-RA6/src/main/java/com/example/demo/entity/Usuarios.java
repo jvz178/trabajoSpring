@@ -161,9 +161,6 @@ public class Usuarios {
 		Date fecha = Date.valueOf(fechaHoy);
 		Citas[] citasDescartar = new Citas[fechaHoy.length()];
 		int contador=0;
-				
-		//List<Citas> citasHoy = citas.removeIf(cita -> cita.getFecha() = LocalDate.now());
-		//citas.stream().filter(cita -> cita.getFecha() = LocalDate.now()
 		
 		for(Citas cita : citas) {
 			

@@ -50,7 +50,6 @@ public class VeterinarioController {
 	@GetMapping("/citasDeHoy")
 	public String citasDeHoy(Model model) {
 		
-		System.out.println(LocalDate.now());
 		Usuarios veterinario = servicioUsuario.getUsuario();
 		model.addAttribute("citas",veterinario.getCitasDeHoyVeterinario());
 		return "citasDeHoy";
