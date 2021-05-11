@@ -66,7 +66,7 @@ public class ImplServicioCita implements ServicioCita {
 	public List<Citas> obtenerCitaPendientesPorMascota(List<Mascotas> mascotas) {
 		
 		List<Citas> citas = listarCita();
-		List<Citas> citasPendientes = new ArrayList();
+		List<Citas> citasPendientes = new ArrayList<Citas>();
 		
 		for(Citas cita : citas) {
 			

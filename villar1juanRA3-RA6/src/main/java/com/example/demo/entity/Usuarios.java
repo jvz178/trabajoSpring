@@ -156,25 +156,17 @@ public class Usuarios {
 	public List<Citas> getCitasDeHoyVeterinario(){
 		
 		List<Citas> citas = getCitasVeterinario();
-		List<Citas> citasDeHoy = citas;
+		List<Citas> citasDeHoy = new ArrayList<Citas>();
 		String fechaHoy=LocalDate.now().toString();
 		Date fecha = Date.valueOf(fechaHoy);
-		Citas[] citasDescartar = new Citas[citas.size()];
-		int contador=0;
 		
 		for(Citas cita : citas) {
 			
 			if((cita.getFecha().toString().equals(fecha.toString()))==false) {
-				citasDescartar[contador]=cita;
-				contador++;
-			}
-		}
-		
-		for(Citas ct : citasDescartar) {
-			
-			if(ct != null) {
-				
-				citasDeHoy.remove(ct);
+				if(cita.getRealizada()==false) {
+					
+					citasDeHoy.add(cita);
+				}
 			}
 		}
 		

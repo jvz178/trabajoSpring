@@ -43,8 +43,6 @@
 							<tr>
 							    <th>Datos mascota</th>
 								<th>Motivo</th>
-								<th>Informe</th>
-								<th>Realizada</th>
 								<th>Realizar</th>
 							</tr>
 						<thead>
@@ -53,8 +51,6 @@
 								<th th:text="${cita.idMascota.nombre}+
 								'/'+${cita.idMascota.tipo}+'/'+${cita.idMascota.raza}">
 								<th th:text=${cita.motivo}></th>
-								<th th:text=${cita.informe}></th>
-								<th th:text=${cita.realizada}></th>
 								<th><a th:href="@{/realizarCita/}+${cita.id}">
 								        <abbr title="Realizar cita">
 										<button type="button" class="btn btn-default">
