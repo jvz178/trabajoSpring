@@ -65,8 +65,7 @@ public class ImplServicioCita implements ServicioCita {
 	public List<Citas> obtenerCitaPendientesPorMascota(List<Mascotas> mascotas) {
 		
 		List<Citas> citas = listarCita();
-		Citas[] citasPendientes = new Citas[citas.size()];
-		int contador = 0;
+		List<Citas> citasPendientes = new ArrayList();
 		
 		for(Citas cita : citas) {
 			
@@ -76,29 +75,13 @@ public class ImplServicioCita implements ServicioCita {
 					
 					if(cita.getRealizada()==false) {
 						
-						citasPendientes[contador]=cita;
-						contador++;
+						citasPendientes.add(cita);
 					}
 				}
 			}
 		}
-		
-		List<Citas> citasFinal = Arrays.asList(citasPendientes);
-		
-		/*for(Citas ct : citasFinal ) {
-			
-			if(ct==null) {
-				
-				citasFinal.remove(ct);
-			}
-		}*/
-		
-		for(Citas x : citasFinal) {
-			
-			System.out.println(x.getMotivo());
-		}
-			
-		return citasFinal;
+					
+		return citasPendientes;
 	}
 	
 	

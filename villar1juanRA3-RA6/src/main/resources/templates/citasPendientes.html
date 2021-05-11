@@ -40,6 +40,8 @@
 					<table class="table table-striped table-borderer">
 						<thead>
 							<tr>
+							    <th>Mascota</th>
+							    <th>Fecha</th>
 								<th>Motivo</th>
 								<th>Informe</th>
 								<th>Realizada</th>
@@ -47,6 +49,8 @@
 						<thead>
 						<tbody th:each="cita: ${citas}">
 							<tr>
+							    <th th:text=${cita.idMascota.nombre}></th>
+							    <th th:text=${cita.fecha}></th>
 								<th th:text=${cita.motivo}></th>
 								<th th:text=${cita.informe}></th>
 								<th th:text=${cita.realizada}></th>
