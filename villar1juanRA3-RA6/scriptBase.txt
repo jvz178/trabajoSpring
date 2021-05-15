@@ -20,5 +20,14 @@ Contraseña=carolina
 INSERT INTO `mascotas` (`id`, `fecha_nacimiento`, `foto`, `nombre`, `raza`, `tipo`, `id_cliente`)
 VALUES ('1', '2019-09-12', 'foto', 'Tommy', 'Pastor aleman', 'Perro', '2');
 
+INSERT INTO `mascotas` (`id`, `fecha_nacimiento`, `foto`, `nombre`, `raza`, `tipo`, `id_cliente`)
+VALUES ('2', '2019-11-12', 'foto', 'Pepe', 'Gato', 'Gato', '2');
+
 INSERT INTO `citas` (`id`, `fecha`, `informe`, `motivo`, `realizada`, `id_mascota`, `id_veterinario`)
 VALUES ('1', '2021-05-18', NULL, 'Consulta urgente', b'0', '1', '3');
+
+INSERT INTO `citas` (`id`, `fecha`, `informe`, `motivo`, `realizada`, `id_mascota`, `id_veterinario`)
+VALUES ('2', '2021-05-30', NULL, 'Revision', b'0', '1', '3');
+
+INSERT INTO `citas` (`id`, `fecha`, `informe`, `motivo`, `realizada`, `id_mascota`, `id_veterinario`)
+VALUES ('3', '2021-05-10','El gato tiene un buen nivel de salud', 'Revision', b'1', '2', '3');
