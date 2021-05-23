@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -51,8 +53,16 @@ public class VeterinarioController {
 	public String citasDeHoy(Model model) {
 		
 		Usuarios veterinario = servicioUsuario.getUsuario();
-		model.addAttribute("citas",veterinario.getCitasDeHoyVeterinario());
+		model.addAttribute("citas",getCitasDeHoyVeterinario(veterinario));
 		return "citasDeHoy";
+	}
+	
+	@GetMapping("/citasProxDias")
+	public String citasProxDias(Model model) {
+		
+		Usuarios veterinario = servicioUsuario.getUsuario();
+		model.addAttribute("citas",getCitasProxDias(veterinario));
+		return "citasProxDias";
 	}
 	
 	@GetMapping("/realizarCita/{id}")
@@ -79,5 +89,47 @@ public class VeterinarioController {
 		cita.setId(idCita);
 		servicioCita.actualizarCita(cita);
 		return "redirect:/citasDeHoy";
+	}
+	
+    public List<Citas> getCitasDeHoyVeterinario(Usuarios veterinario){
+		
+		List<Citas> citas = veterinario.getCitasVeterinario();
+		List<Citas> citasDeHoy = new ArrayList<Citas>();
+		String fechaHoy=LocalDate.now().toString();
+		Date fecha = Date.valueOf(fechaHoy);
+		
+		for(Citas cita : citas) {
+			
+			if((cita.getFecha().toString().equals(fecha.toString()))==true) {
+				System.out.println(cita.getFecha().toString());
+				if(cita.getRealizada()==false) {
+					
+					citasDeHoy.add(cita);
+				}
+			}
+		}
+		
+		return citasDeHoy;
+	}
+    
+    public List<Citas> getCitasProxDias(Usuarios veterinario){
+		
+		List<Citas> citas = veterinario.getCitasVeterinario();
+		List<Citas> citasDeHoy = new ArrayList<Citas>();
+		String fechaHoy=LocalDate.now().toString();
+		Date fecha = Date.valueOf(fechaHoy);
+		
+		for(Citas cita : citas) {
+			
+			if(cita.getFecha().after(fecha)==true) {
+				
+				if(cita.getRealizada()==false) {
+					
+					citasDeHoy.add(cita);
+				}
+			}
+		}
+		
+		return citasDeHoy;
 	}
 }

@@ -152,24 +152,5 @@ public class Usuarios {
 	public void setCitasVeterinario(List<Citas> citasVeterinario) {
 		this.citasVeterinario = citasVeterinario;
 	}
-	
-	public List<Citas> getCitasDeHoyVeterinario(){
-		
-		List<Citas> citas = getCitasVeterinario();
-		List<Citas> citasDeHoy = new ArrayList<Citas>();
-		String fechaHoy=LocalDate.now().toString();
-		Date fecha = Date.valueOf(fechaHoy);
-		
-		for(Citas cita : citas) {
-			
-			if((cita.getFecha().toString().equals(fecha.toString()))==false) {
-				if(cita.getRealizada()==false) {
-					
-					citasDeHoy.add(cita);
-				}
-			}
-		}
-		
-		return citasDeHoy;
-	}
+
 }
