@@ -33,7 +33,7 @@
 					<h2 class="text-white mb-5">Introduce los datos para registrar
 						una mascota</h2>
 					<form th:action="@{/mascotaRegistrada}" th:object="${mascota}"
-						method="post">
+						method="post" enctype="multipart/form-data">
 						<formulario>
 						<input class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0"
 							type="text" th:field="*{nombre}" id="nombre"
@@ -48,8 +48,7 @@
 							type="date" th:field="*{fechaNacimiento}" id="fechaNacimiento"
 							placeholder="Introduce fecha de nacimiento" /> <br>
 						<input class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0"
-							type="text" th:field="*{foto}" id="foto"
-							placeholder="Introduce foto" /> <br>
+							type="file" name="file" id="foto"/> <br>
 						</formulario>
 						<button class="btn btn-primary mx-auto" type="submit">Registrar</button>
 						<br>

@@ -1,7 +1,12 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 
+import org.apache.tomcat.jni.File;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,6 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.entity.Citas;
@@ -86,7 +93,20 @@ public class MascotasController {
 	}
 	
 	@PostMapping("/mascotaRegistrada")
-	public String mascotaRegistrada(@ModelAttribute Mascotas mascota) {
+	public String mascotaRegistrada(@ModelAttribute Mascotas mascota,
+			@RequestParam("file") MultipartFile foto) throws IOException {
+		
+		if(foto.isEmpty()==false) {
+			
+			Path imagenes = Paths.get("src//main//resources//static/imagenes/mascotas");
+			String rutaAbsoluta = imagenes.toFile().getAbsolutePath();
+			
+			byte[] bytesImagen = foto.getBytes();
+			Path rutaCompleta = Paths.get(rutaAbsoluta+"//"+foto.getOriginalFilename());
+			Files.write(rutaCompleta, bytesImagen);
+			
+			mascota.setFoto(foto.getOriginalFilename());
+		}
 		
 		mascota.setIdCliente(servicioUsuario.getUsuario());
 		servicioMascota.añadirMascota(mascota);
