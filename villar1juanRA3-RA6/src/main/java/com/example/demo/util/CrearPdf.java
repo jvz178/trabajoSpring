@@ -1,7 +1,7 @@
 package com.example.demo.util;
 
 import java.awt.Color;
-import java.awt.Image;
+
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +17,7 @@ import com.lowagie.text.Document;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
+import com.lowagie.text.Image;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
@@ -120,10 +121,9 @@ public class CrearPdf extends AbstractPdfView{
 		tablaMascota.addCell(listadoCitas.get(0).getIdMascota().getTipo());
 		tablaMascota.addCell(listadoCitas.get(0).getIdMascota().getRaza());
 		tablaMascota.addCell(listadoCitas.get(0).getIdMascota().getFechaNacimiento().toString());
-		/*ImageData datosFoto = ImageDataFactory.create("src//main//resources//static/imagenes/mascotas/"
+		Image fotoMascota = Image.getInstance("src//main//resources//static/imagenes/mascotas/"
 		+listadoCitas.get(0).getIdMascota().getFoto());
-		Image fotoMascota = new Image();*/
-		tablaMascota.addCell(listadoCitas.get(0).getIdMascota().getFoto());
+		tablaMascota.addCell(fotoMascota);
 		document.add(mascotaTitulo);
 		document.add(tablaMascota);
 		document.newPage();
