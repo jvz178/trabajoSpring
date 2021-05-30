@@ -69,7 +69,7 @@
 										</button>
 										</abbr>
 								</a> <a th:href="@{/editarMascota/}+${mascota.id}">
-								        <abbr title="Editar mascota">
+								        <abbr title="Editar mascota (sin foto)">
 										<button type="button" class="btn btn-default">
 											<i class="fas fa-paw"></i>
 										</button>
@@ -85,6 +85,13 @@
 										<button type="button" class="btn btn-default">
 										    <i class="far fa-file-pdf"></i>
 										</button> </abbr> </a>
+									 <a th:href="@{/cambiarFotoMascota/}+${mascota.id}">
+								        <abbr title="Editar mascota (con foto)">
+										<button type="button" class="btn btn-default">
+										    <i class="far fa-images"></i>
+										</button>
+										</abbr>
+								</a>
 								</li>
 								</a> <a th:href="@{/historialCitas/}+${mascota.id}">
 								        <abbr title="Historial mascota">

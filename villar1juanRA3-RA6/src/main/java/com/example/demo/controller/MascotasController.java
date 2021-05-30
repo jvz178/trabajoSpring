@@ -37,6 +37,7 @@ public class MascotasController {
 	private Date fechaCita;
 	private Usuarios idCliente;
 	private Citas citaPedida;
+	private String fotoMascota;
 	
 	@Autowired
 	@Qualifier("servicioMascota")
@@ -67,18 +68,41 @@ public class MascotasController {
 	}
 	
 	@GetMapping("/editarMascota/{id}")
-	public String editarUsuarioAdmin(@PathVariable int id, Model model) throws Exception {
+	public String editarMascota(@PathVariable int id, Model model) throws Exception {
+		
+		Mascotas mascota= servicioMascota.obtenerMascotaPorId(id);
+		idEditar=id;
+		idCliente=mascota.getIdCliente();
+		fotoMascota=mascota.getFoto();
+		model.addAttribute("mascota", mascota);
+		return "editarMascota";
+	}
+	
+	@GetMapping("/cambiarFotoMascota/{id}")
+	public String cambiarFotoMascota(@PathVariable int id, Model model) throws Exception {
 		
 		Mascotas mascota= servicioMascota.obtenerMascotaPorId(id);
 		idEditar=id;
 		idCliente=mascota.getIdCliente();
 		model.addAttribute("mascota", mascota);
-		return "editarMascota";
+		return "cambiarFotoMascota";
 	}
 	
 	@PostMapping("/mascotaCambiada")
-	public String usuarioCambiado(@ModelAttribute Mascotas mascota) {
-		
+	public String mascotaCambiada(@ModelAttribute Mascotas mascota) throws IOException {
+					
+		mascota.setId(idEditar);
+		mascota.setIdCliente(idCliente);
+		mascota.setFoto(fotoMascota);
+		servicioMascota.actualizarMascota(mascota);
+		return "redirect:/tablaMascotas";
+	}
+	
+	@PostMapping("/fotoMascotaCambiada")
+	public String fotoMascotaCambiada(@ModelAttribute Mascotas mascota,
+			@RequestParam("file") MultipartFile foto) throws IOException {
+					
+		guardarImagen(mascota,foto);
 		mascota.setId(idEditar);
 		mascota.setIdCliente(idCliente);
 		servicioMascota.actualizarMascota(mascota);
@@ -95,6 +119,14 @@ public class MascotasController {
 	@PostMapping("/mascotaRegistrada")
 	public String mascotaRegistrada(@ModelAttribute Mascotas mascota,
 			@RequestParam("file") MultipartFile foto) throws IOException {
+					
+		guardarImagen(mascota,foto);
+		mascota.setIdCliente(servicioUsuario.getUsuario());
+		servicioMascota.añadirMascota(mascota);
+		return "logueado";
+	}
+	
+	public void guardarImagen(Mascotas mascota, MultipartFile foto) throws IOException {
 		
 		if(foto.isEmpty()==false) {
 			
@@ -107,10 +139,6 @@ public class MascotasController {
 			
 			mascota.setFoto(foto.getOriginalFilename());
 		}
-		
-		mascota.setIdCliente(servicioUsuario.getUsuario());
-		servicioMascota.añadirMascota(mascota);
-		return "logueado";
 	}
 	
 	@GetMapping("/datosCita/{id}")
