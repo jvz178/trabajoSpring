@@ -18,10 +18,10 @@ VALUES ('3', b'1', 'Perez', 'Carolina', '$2a$10$mqQfTvEIhBj8hqdFUc1O3eae1qmmt5Cs
 Contraseña=carolina
 
 INSERT INTO `mascotas` (`id`, `fecha_nacimiento`, `foto`, `nombre`, `raza`, `tipo`, `id_cliente`)
-VALUES ('1', '2019-09-12', 'foto', 'Tommy', 'Pastor aleman', 'Perro', '2');
+VALUES ('1', '2019-09-12', 'Tommy-Cooper.jpg', 'Tommy', 'Pastor aleman', 'Perro', '2');
 
 INSERT INTO `mascotas` (`id`, `fecha_nacimiento`, `foto`, `nombre`, `raza`, `tipo`, `id_cliente`)
-VALUES ('2', '2019-11-12', 'foto', 'Pepe', 'Gato', 'Gato', '2');
+VALUES ('2', '2019-11-12', 'Gato.jpg', 'Pepe', 'Gato', 'Gato', '2');
 
 INSERT INTO `citas` (`id`, `fecha`, `informe`, `motivo`, `realizada`, `id_mascota`, `id_veterinario`)
 VALUES ('1', '2021-05-18', NULL, 'Consulta urgente', b'0', '1', '3');
