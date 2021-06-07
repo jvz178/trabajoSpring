@@ -46,6 +46,8 @@ public class Usuarios {
 	@Size(max=150)
 	private String password;
 	
+	private String token;
+	
 	@NotNull
 	@Size(max=20)
 	private String role;
@@ -119,6 +121,14 @@ public class Usuarios {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	public String getRole() {

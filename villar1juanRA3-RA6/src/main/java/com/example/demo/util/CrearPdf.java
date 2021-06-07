@@ -122,8 +122,9 @@ public class CrearPdf extends AbstractPdfView{
 		tablaMascota.addCell(listadoCitas.get(0).getIdMascota().getRaza());
 		tablaMascota.addCell(listadoCitas.get(0).getIdMascota().getFechaNacimiento().toString());
 		Image fotoMascota = Image.getInstance("src//main//resources//static/imagenes/mascotas/"
-		+listadoCitas.get(0).getIdMascota().getFoto());
-		tablaMascota.addCell(fotoMascota);
+	    +listadoCitas.get(0).getIdMascota().getFoto());
+	    tablaMascota.addCell(fotoMascota);
+		
 		document.add(mascotaTitulo);
 		document.add(tablaMascota);
 		document.newPage();
@@ -154,9 +155,6 @@ public class CrearPdf extends AbstractPdfView{
 			document.newPage();
 		});
 		
-		/*document.add(tablaCitas);
-		document.newPage();
-		document.add(new Paragraph("PAGINA"));*/
 		document.close();
 	}
 
