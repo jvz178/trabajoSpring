@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,12 +23,12 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class AuthenticationRest {
 
 	@Autowired
-	private AuthenticationManager am;
+	private AuthenticationManager authenticationManager;
 	
-	@PostMapping("/login/")
+	@PostMapping("/loginApi/")
 	public com.example.demo.entity.Usuarios login(@RequestParam("user") String username,
 	@RequestParam("password") String pwd){
-		Authentication authentication = am.authenticate(
+		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(username,pwd));
 		
 		SecurityContextHolder.getContext().setAuthentication(authentication);
