@@ -31,22 +31,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http
 		.csrf().disable()
-		//.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
+		.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 		.authorizeRequests()
-		.antMatchers("/loginApi/","/login/","/","/auth/**","/css/**","/assets/**","/imagenes/**","/js/**","/registrarse/**","/nuevoCliente**")
+		.antMatchers(HttpMethod.POST, "/login/")
 		.permitAll()
-		.anyRequest().authenticated()
-		.and()
-	.formLogin()
-		.loginPage("/auth/login")
-		.defaultSuccessUrl("/logueado",true)
-		.loginProcessingUrl("/auth/logueado")
-		.permitAll()
-		.and()
-	.logout()
-		//.logoutUrl("/logout")
-		.logoutSuccessUrl("/auth/login?logout")
-		.permitAll();
+		.anyRequest().authenticated();
 	}
 	
 	@Override

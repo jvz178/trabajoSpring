@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.entity.Mascotas;
 import com.example.demo.entity.Usuarios;
 
-
 @Repository("repositorioMascota")
 public interface RepositorioMascota extends JpaRepository<Mascotas, Serializable>{
 

@@ -24,10 +24,45 @@ import com.example.demo.entity.Usuarios;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-@Controller
+@RestController
 public class LoginController {
 	
-	@GetMapping("/auth/login")
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	
+	@PostMapping("/login/")
+	public com.example.demo.entity.Usuarios login(@RequestParam("user") String username,
+	@RequestParam("password") String pwd){
+		Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(username,pwd));
+		
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		String token = getJWTToken(username);
+		com.example.demo.entity.Usuarios usuario = new com.example.demo.entity.Usuarios();
+		usuario.setUsername(username);
+		usuario.setPassword(pwd);
+		usuario.setToken(token);
+		return usuario;
+	}
+	
+	private String getJWTToken(String username) {
+		
+		String secretKey = "secret";
+		List<GrantedAuthority> grantedAuthorities = AuthorityUtils
+				.commaSeparatedStringToAuthorityList("ROLE_CLI");
+		
+		String token = Jwts.builder().setId("softtekJWT").setSubject(username)
+				.claim("authorities", grantedAuthorities.stream()
+						.map(GrantedAuthority::getAuthority)
+						.collect(Collectors.toList()))
+				.setIssuedAt(new Date(System.currentTimeMillis()))
+				.setExpiration(new Date(System.currentTimeMillis()+600000))
+				.signWith(SignatureAlgorithm.HS512,
+						secretKey.getBytes()).compact();
+		return "Bearer "+token;
+	}
+	
+	/*@GetMapping("/auth/login")
 	public String login(Model model, @RequestParam(name="error", required=false) String error,
 			@RequestParam(name="logout", required=false) String logout) {
 		
@@ -45,5 +80,5 @@ public class LoginController {
 	@PostMapping("/logout")
 	public String logout() {
 		return "redirect:/login";
-	}
+	}*/
 }
