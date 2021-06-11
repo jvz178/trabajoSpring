@@ -11,5 +11,5 @@ public interface ServicioMascota {
 	public abstract int quitarMascota(int id);
 	public abstract Mascotas actualizarMascota(Mascotas mascota);
 	public abstract Mascotas obtenerMascotaPorId(int id) throws Exception;
-	public abstract Mascotas obtenerMascotasPorIdCliente(Usuarios idCliente);
+	public abstract List<Mascotas> obtenerMascotasPorIdCliente(Usuarios idCliente);
 }

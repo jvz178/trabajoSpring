@@ -55,9 +55,8 @@ public class ImplServicioMascota implements ServicioMascota{
 	}
 
 	@Override
-	public Mascotas obtenerMascotasPorIdCliente(Usuarios idCliente) {
+	public List<Mascotas> obtenerMascotasPorIdCliente(Usuarios idCliente) {
 		
 		return repositorioMascota.findByIdCliente(idCliente);
 	}
-
 }

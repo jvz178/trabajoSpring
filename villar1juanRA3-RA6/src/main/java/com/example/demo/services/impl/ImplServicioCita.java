@@ -52,7 +52,7 @@ public class ImplServicioCita implements ServicioCita {
 		return repositorioCita.save(cita);
 	}
 	
-	public Citas listarCitaPorMascota(Mascotas mascota) {
+	public List<Citas> listarCitaPorMascota(Mascotas mascota) {
 		
 		return repositorioCita.findByIdMascota(mascota);
 	}
@@ -85,8 +85,6 @@ public class ImplServicioCita implements ServicioCita {
 		Collections.sort(citasPendientes);
 		return citasPendientes;
 	}
-	
-	
 	
 	
 	
