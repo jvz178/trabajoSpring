@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<settings th:replace="plantillasBase/plantillaBase :: set"></settings>
+<title>Clinican - Menu</title>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
+		id="mainNav">
+		<div class="container">
+			<usuario th:replace="plantillasBase/plantillaBase :: usuario"></usuario>
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				Menu <i class="fas fa-bars"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						th:href="@{/auth/editarUsuario}">Editar perfil</a></li>
+					<form class="form-inline" th:action="@{/logout}" method="post">
+						<button class="btn btn-danger" type="submit">Salir</button>
+					</form>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- Masthead-->
+	<header class="masthead">
+		<div class="container d-flex h-100 align-items-center">
+			<div class="mx-auto text-center">
+				<h1 class="mx-auto my-0 text-uppercase">Clinican</h1>
+				<h2 class="text-white-50 mx-auto mt-2 mb-5">Bienvenido</h2>
+				<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+					<form class="form-inline" th:action="@{/mostrarUsuarios}"
+						method="get">
+						<div class="mx-auto text-center">
+							<button class="btn btn-primary js-scroll-trigger" type="submit">
+							Funciones admin</button>
+						</div>
+					</form>
+				</li>
+				<li sec:authorize="hasRole('ROLE_CLI')" class="nav-item">
+					<a th:href="@{/tablaMascotas}"
+					method="get">
+						<div class="mx-auto text-center">
+							<button class="btn btn-primary js-scroll-trigger" type="submit">
+							Mascotas</button>
+						</div>
+					</a>
+					</br>
+					<a th:href="@{/citasPendientes}">
+						<div class="mx-auto text-center">
+							<button class="btn btn-primary js-scroll-trigger" type="submit">
+							Citas pendientes</button>
+						</div>
+					</a>
+				</li>
+				<li sec:authorize="hasRole('ROLE_VET')" class="nav-item">
+					<form class="form-inline" th:action="@{/mostrarMascotas}"
+						method="get">
+						<div class="mx-auto text-center">
+							<button class="btn btn-primary js-scroll-trigger" type="submit">
+							Mascotas</button>
+						</div>
+					</form>
+					<br/>
+					<form class="form-inline" th:action="@{/citasDeHoy}"
+						method="get">
+						<div class="mx-auto text-center">
+							<button class="btn btn-primary js-scroll-trigger" type="submit">
+							Citas de hoy</button>
+						</div>
+					</form>
+					<br/>
+					<form class="form-inline" th:action="@{/citasProxDias}"
+						method="get">
+						<div class="mx-auto text-center">
+							<button class="btn btn-primary js-scroll-trigger" type="submit">
+							Citas proximos dias</button>
+						</div>
+					</form>
+				</li>
+				
+			</div>
+		</div>
+	</header>
+
+	<footerSection
+		th:replace="plantillasBase/plantillaBase :: footerSection"></footerSection>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<vista th:fragment="vista">
+<head>
+<settings th:replace="plantillasBase/plantillaBase :: set"></settings>
+<title>Clinican - mascotas</title>
+</head>
+<body id="page-top">
+	<!-- Navigation-->
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
+		id="mainNav">
+		<div class="container">
+			<usuario th:replace="plantillasBase/plantillaBase :: usuario"></usuario>
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				Menu <i class="fas fa-bars"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						href="/logueado">Atras</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- Masthead-->
+	<header class="masthead">
+		<div class="container d-flex h-100 align-items-center">
+			<div class="mx-auto text-center">
+				<h1 class="mx-auto my-0 text-uppercase">Seccion mascotas</h1>
+				<h2 class="text-white-50 mx-auto mt-2 mb-5">Bienvenido</h2>
+			</div>
+		</div>
+	</header>
+
+	<section class="projects-section bg-light" id="projects">
+		<div class="container">
+			<!-- Featured Project Row-->
+			<div class="row align-items-center no-gutters mb-4 mb-lg-5">
+				<div class="container d-flex h-100 align-items-center">
+					<table class="table table-striped table-borderer">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Nombre</th>
+								<th>Tipo</th>
+								<th>Raza</th>
+								<th>Fecha de nacimiento</th>
+								<th>Foto</th>
+								<th>Acciones</th>
+							</tr>
+						<thead>
+						<tbody th:each="mascota: ${mascotas}">
+							<tr>
+								<th th:text=${mascota.id}></th>
+								<th th:text=${mascota.nombre}></th>
+								<th th:text=${mascota.tipo}></th>
+								<th th:text=${mascota.raza}></th>
+								<th th:text=${mascota.fechaNacimiento}></th>
+								<th th:text=${mascota.foto}></th>
+								<th>
+								<li sec:authorize="hasRole('ROLE_CLI')" class="nav-item">
+								<a th:href="@{/borrarMascota/}+${mascota.id}">
+								        <abbr title="Borrar mascota">
+										<button type="button" class="btn btn-default">
+											<i class="fas fa-dumpster-fire"></i>
+										</button>
+										</abbr>
+								</a> <a th:href="@{/editarMascota/}+${mascota.id}">
+								        <abbr title="Editar mascota (sin foto)">
+										<button type="button" class="btn btn-default">
+											<i class="fas fa-paw"></i>
+										</button>
+										</abbr>
+								</a> <a th:href="@{/datosCita/}+${mascota.id}">
+								        <abbr title="Datos cita mascota">
+										<button type="button" class="btn btn-default">
+										    <i class="fas fa-edit"></i>
+										</button> </abbr> </a>
+									 <a th:href="@{/historialCitas/}+${mascota.id}+'/?format=pdf'"
+									    target="_blank">
+								        <abbr title="PDF">
+										<button type="button" class="btn btn-default">
+										    <i class="far fa-file-pdf"></i>
+										</button> </abbr> </a>
+									 <a th:href="@{/cambiarFotoMascota/}+${mascota.id}">
+								        <abbr title="Editar mascota (con foto)">
+										<button type="button" class="btn btn-default">
+										    <i class="far fa-images"></i>
+										</button>
+										</abbr>
+								</a>
+								</li>
+								</a> <a th:href="@{/historialCitas/}+${mascota.id}">
+								        <abbr title="Historial mascota">
+										<button type="button" class="btn btn-default">
+										    <i class="far fa-clipboard"></i>
+										</button>
+										</abbr>
+								</a>
+								</th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<li sec:authorize="hasRole('ROLE_CLI')" class="nav-item">
+				<br>
+				<form class="form-inline" th:action="@{/nuevaMascota}">
+					<div class="mx-auto text-center">
+					    <abbr title="Nueva mascota">
+						<button class="btn btn-primary js-scroll-trigger" type="submit">
+						<i class="fas fa-plus"></i></button></abbr>
+					</div>
+				</form>
+				</li>
+			</div>
+		</div>
+	</section>
+
+	<footerSection
+		th:replace="plantillasBase/plantillaBase :: footerSection"></footerSection>
+
+</body>
+</vista>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<settings th:replace="plantillasBase/plantillaBase :: set"></settings>
+<title>Clinican - admin</title>
+</head>
+<body id="page-top">
+	<!-- Navigation-->
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
+		id="mainNav">
+		<div class="container">
+			<usuario th:replace="plantillasBase/plantillaBase :: usuario"></usuario>
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				Menu <i class="fas fa-bars"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						href="/logueado">Atras</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- Masthead-->
+	<header class="masthead">
+		<div class="container d-flex h-100 align-items-center">
+			<div class="mx-auto text-center">
+				<h1 class="mx-auto my-0 text-uppercase">Seccion admin</h1>
+				<h2 class="text-white-50 mx-auto mt-2 mb-5">Bienvenido</h2>
+			</div>
+		</div>
+	</header>
+
+	<section class="projects-section bg-light" id="projects">
+		<div class="container">
+			<!-- Featured Project Row-->
+			<div class="row align-items-center no-gutters mb-4 mb-lg-5">
+				<div class="container d-flex h-100 align-items-center">
+					<table class="table table-striped table-borderer">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Nombre</th>
+								<th>Apellidos</th>
+								<th>Telefono</th>
+								<th>Username</th>
+								<th>Password</th>
+								<th>Rol</th>
+								<th>Estado</th>
+								<th>Acciones</th>
+							</tr>
+						<thead>
+						<tbody th:each="usuario: ${usuarios}">
+							<tr>
+								<th th:text=${usuario.id}></th>
+								<th th:text=${usuario.nombre}></th>
+								<th th:text=${usuario.apellidos}></th>
+								<th th:text=${usuario.telefono}></th>
+								<th th:text=${usuario.username}></th>
+								<th>???</th>
+								<th th:text=${usuario.role}></th>
+								<span th:if="${usuario.activado} == ${false}">
+									<th th:text=Desactivado></th>
+								</span>
+								<span th:if="${usuario.activado} == ${true}">
+									<th th:text=Activado></th>
+								</span>
+								<th><a th:href="@{/borrarUsuario/}+${usuario.id}">
+								        <abbr title="Borrar usuario">
+										<button type="button" class="btn btn-default">
+											<i class="fas fa-dumpster-fire"></i>
+										</button>
+										</abbr>
+								</a> <a th:href="@{/editarUsuarioAdmin/}+${usuario.id}">
+								        <abbr title="Editar usuario">
+										<button type="button" class="btn btn-default">
+											<i class="fas fa-user-edit"></i>
+										</button>
+										</abbr>
+								</a> <a th:href="@{/activarDesactivarUsuario/}+${usuario.id}">
+								        <abbr title="Activar/Desactivar usuario">
+										<button type="button" class="btn btn-default">
+										<span th:if="${usuario.activado} == ${false}">
+											<i class="fas fa-user-check"></i> </span>
+										<span th:if="${usuario.activado} == ${true}">
+											<i class="fas fa-user-times"></i> </span>
+										</button>
+										</abbr>
+								</a></th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<br>
+				<form class="form-inline" th:action="@{/auth/nuevoUsuarioAdmin}">
+					<div class="mx-auto text-center">
+						<button class="btn btn-primary js-scroll-trigger" type="submit">
+						<i class="fas fa-user-plus"></i></button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<footerSection
+		th:replace="plantillasBase/plantillaBase :: footerSection"></footerSection>
+
+</body>
+</html>
